@@ -5,6 +5,8 @@ import React, { Suspense } from 'react';
 
 import { Navigation } from '@/components/Navigation/Navigation';
 
+import { Loading } from '../components/Loading';
+
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
     ? () => null // Render nothing in production
@@ -21,11 +23,18 @@ export const BaseRoute = rootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: () => (
-    <Suspense>
-      <Navigation />
-      <Outlet />
-      <TanStackRouterDevtools position="bottom-right" />
-      <ReactQueryDevtools buttonPosition="bottom-left" initialIsOpen={false} />
-    </Suspense>
+    <>
+      <Suspense fallback={<Loading />}>
+        <Navigation />
+        <Outlet />
+      </Suspense>
+      <Suspense fallback={<span>Loading ...</span>}>
+        <TanStackRouterDevtools position="bottom-right" />
+        <ReactQueryDevtools
+          buttonPosition="bottom-left"
+          initialIsOpen={false}
+        />
+      </Suspense>
+    </>
   ),
 });
