@@ -9,7 +9,8 @@
         "plugin:react/recommended",
         "prettier",
         "plugin:react/jsx-runtime",
-        "plugin:@tanstack/eslint-plugin-query/recommended"
+        "plugin:@tanstack/eslint-plugin-query/recommended",
+        "plugin:react-hooks/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
