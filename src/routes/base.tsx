@@ -21,13 +21,11 @@ export const BaseRoute = rootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: () => (
-    <>
+    <Suspense>
       <Navigation />
       <Outlet />
-      <Suspense>
-        <TanStackRouterDevtools position="bottom-right" />
-      </Suspense>
+      <TanStackRouterDevtools position="bottom-right" />
       <ReactQueryDevtools buttonPosition="bottom-left" initialIsOpen={false} />
-    </>
+    </Suspense>
   ),
 });
