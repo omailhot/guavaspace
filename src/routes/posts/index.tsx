@@ -1,5 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Route } from '@tanstack/react-router';
+import * as v from 'valibot';
 
 import { Button } from '../../components/ui/button';
 import { BaseRoute } from '../base';
@@ -44,10 +45,15 @@ const Component = () => {
   );
 };
 
+const PostsParamsSchema = v.object({
+  id: v.optional(v.number()),
+});
+
 export const PostsRoute = new Route({
   getParentRoute: () => BaseRoute,
   component: Component,
   loader: ({ context: { queryClient } }) =>
     queryClient.ensureQueryData(fetchPostsQuery),
   path: '/posts/$id',
+  validateSearch: (search) => v.parse(PostsParamsSchema, search),
 });
