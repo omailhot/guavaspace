@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "start_date": {
+      "label": "Date de début"
+    },
+    "end_date": {
+      "label": "Date de fin"
+    },
+    "daily_price": {
+      "label": "Prix quotidien ($)"
+    },
+    "seats": {
+      "label": "Places disponibles"
+    },
+    "min_duration_days": {
+      "label": "Durée minimale en jours"
+    },
+    "date_range": {
+      "label": "Période",
+      "erros": {
+        "intersection": "Les périodes ne doivent pas se chevaucher"
+      },
+      "infinity": "Illimité"
+    }
+  },
+  "no_results": "Aucune offre de location"
+}

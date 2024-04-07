@@ -1,0 +1,14 @@
+{
+  "location": "Emplacement",
+  "date": "Sélectionnez une date",
+  "capacity": {
+    "title": "Capacité",
+    "description": "Combien de places avez-vous besoin?",
+    "seat_one": "Poste",
+    "seat_other": "Postes",
+    "room_one": "Salle",
+    "room_other": "Salles"
+  },
+  "search": "Rechercher",
+  "reset": "Tout effacer"
+}

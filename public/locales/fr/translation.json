@@ -1,3 +1,21 @@
 {
-  "test": "Allo"
+  "errors": {
+    "InvalidParameterException": "Veuillez remplir tous les champs.",
+    "InvalidPasswordException": "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",
+    "NotAuthorizedException": "Adresse e-mail ou mot de passe incorrect.",
+    "TooManyRequestsException": "Trop de tentatives de connexion, veuillez réessayer plus tard.",
+    "UsernameExistsException": "Cette adresse e-mail est déjà utilisée.",
+    "default": "Une erreur est survenue.",
+    "UserNotConfirmedException": "Veuillez confirmer votre adresse e-mail.",
+    "CodeMismatchException": "Code de vérification incorrect.",
+    "UserNotFoundException": "Utilisateur introuvable.",
+    "LimitExceededException": "Trop de tentatives de connexion, veuillez réessayer plus tard.",
+    "defaultTitle": "Erreur",
+    "invalid_address": "Adresse invalide."
+  },
+  "buttons": {
+    "loading": "Chargement...",
+    "continue": "Continuer",
+    "close": "Fermer"
+  }
 }

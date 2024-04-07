@@ -1,0 +1,14 @@
+{
+  "home": "Accueil",
+  "business": "Entreprise",
+  "listing": "Lister un espace de travail",
+  "language": "Guavaspace in English",
+  "support": "Soutien",
+  "newsletter": {
+    "title": "Recevez notre infolettre",
+    "description": "Inscrivez-vous à notre infolettre pour recevoir des nouvelles de nos projets et des offres exclusives.",
+    "label": "Adresse courriel",
+    "placeholder": "Saisissez votre adresse courriel",
+    "submit": "S'abonner"
+  }
+}
