@@ -9,6 +9,9 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: "'Montserrat', sans-serif"
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -51,6 +54,18 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      height: {
+        'nav': 'var(--nav-height)',
+        'body': 'var(--body-height)',
+      },
+      minHeight: {
+        "nav": "var(--nav-height)",
+        "body": "var(--body-height)",
+      },
+      maxHeight: {
+        "nav": "var(--nav-height)",
+        "body": "var(--body-height)",
       },
       borderRadius: {
         lg: "var(--radius)",

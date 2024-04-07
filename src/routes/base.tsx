@@ -1,40 +1,34 @@
 import { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Outlet, rootRouteWithContext } from '@tanstack/react-router';
-import React, { Suspense } from 'react';
+import {
+  createRootRouteWithContext,
+  Outlet,
+  ScrollRestoration,
+} from '@tanstack/react-router';
+import { Suspense } from 'react';
 
-import { Navigation } from '@/components/Navigation/Navigation';
+import { FullPageLoader } from '../components/loader/FullPageLoader';
+import { Toaster } from '../components/ui/sonner';
+import { AuthProvider } from '../Contexts/AuthContext';
 
-import { Loading } from '../components/Loading';
-
-const TanStackRouterDevtools =
-  process.env.NODE_ENV === 'production'
-    ? () => null // Render nothing in production
-    : React.lazy(() =>
-        // Lazy load in development
-        import('@tanstack/router-devtools').then((res) => ({
-          default: res.TanStackRouterDevtools,
-          // For Embedded Mode
-          // default: res.TanStackRouterDevtoolsPanel
-        })),
-      );
-
-export const BaseRoute = rootRouteWithContext<{
+export const BaseRoute = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: () => (
-    <>
-      <Suspense fallback={<Loading />}>
-        <Navigation />
-        <Outlet />
-      </Suspense>
-      <Suspense fallback={<span>Loading ...</span>}>
-        <TanStackRouterDevtools position="bottom-right" />
-        <ReactQueryDevtools
-          buttonPosition="bottom-left"
-          initialIsOpen={false}
-        />
-      </Suspense>
-    </>
+    <Suspense>
+      <AuthProvider>
+        <Suspense fallback={<FullPageLoader />}>
+          <ScrollRestoration />
+          <Outlet />
+        </Suspense>
+        <Suspense>
+          <ReactQueryDevtools
+            buttonPosition="bottom-left"
+            initialIsOpen={false}
+          />
+        </Suspense>
+        <Toaster richColors theme="light" />
+      </AuthProvider>
+    </Suspense>
   ),
 });
