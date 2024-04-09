@@ -1,74 +1,78 @@
-import { valibotResolver } from '@hookform/resolvers/valibot';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Input } from '@/components/ui/input';
 
-import { handleCogintoError } from '../../../lib/cognito/Errors';
+import { useAuthContext } from '../../../Contexts/AuthContext';
 import { useCreateCompany } from '../../../mutations/useCreateCompany';
 import { useAuthFlowStore } from '../../../stores/useAuthFlowStore';
-import { CompanySchema, CompanyType } from '../../../types/Company';
 import { SubmitButton } from '../../form/SubmitButton';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../../ui/form';
-import { StepAlert } from './StepAlert';
 
 export const CompanyCreationForm = () => {
   const { t } = useTranslation(['auth']);
-  const step = useAuthFlowStore((s) => s.step);
+  const [officeName, setOfficeName] = useState('');
+  const [officeLogoFile, setOfficeLogoFile] = useState<File>();
+  const { nextStep } = useAuthFlowStore();
+  const { resetSession } = useAuthContext();
 
   const mutation = useCreateCompany();
 
-  const form = useForm<CompanyType>({
-    resolver: valibotResolver(CompanySchema),
-    defaultValues: {
-      companyName: '',
-    },
-  });
+  async function onSubmit() {
+    if (!officeLogoFile) {
+      return;
+    }
 
-  async function onSubmit(values: CompanyType) {
-    mutation.mutate(values);
+    mutation
+      .mutateAsync({
+        companyName: officeName,
+        file: officeLogoFile,
+        companyLogoContentType: officeLogoFile?.type,
+      })
+      .then(() => {
+        nextStep();
+        resetSession();
+      })
+      .catch(() => {
+        mutation.reset();
+      });
   }
 
   const isLoading = mutation.isPending;
 
-  const error = mutation.error ? handleCogintoError(mutation.error) : null;
+  const disabled = mutation.error || !officeName || !officeLogoFile;
 
   return (
-    <div className="flex flex-col divide-y-2">
-      <Form {...form}>
-        <form
-          className="grid gap-4 pt-4"
-          onSubmit={form.handleSubmit(onSubmit)}
-        >
-          {step.alert ? <StepAlert {...step.alert} /> : null}
-          {error ? <FormMessage>{t(error.messageKey)}</FormMessage> : null}
-          <FormField
-            control={form.control}
-            name="companyName"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>{t('auth:fields.company_name.label')}</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+    <div className="flex flex-col gap-5 divide-y-2">
+      <div className="grid gap-4 pt-4">
+        <div className="flex flex-col">
+          <div>{t('auth:fields.company_name.label')}</div>
+          <Input
+            onChange={(e) => {
+              setOfficeName(e.target.value);
+            }}
+            value={officeName}
           />
+        </div>
+        <div className="flex flex-col">
+          <div>{t('auth:fields.company_name.label')}</div>
+          <Input
+            accept={'image/*'}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
 
-          <SubmitButton
-            disabled={!form.formState.isValid}
-            isLoading={isLoading}
+              if (file) {
+                setOfficeLogoFile(file);
+              }
+            }}
+            type="file"
           />
-        </form>
-      </Form>
+        </div>
+      </div>
+      <SubmitButton
+        disabled={disabled}
+        isLoading={isLoading}
+        onClick={onSubmit}
+      />
     </div>
   );
 };

@@ -57,6 +57,17 @@ export const Navigation = ({ className }: Props) => {
               <PlusSquare size={18} />
               {t('navigation:listing')}
             </Button>
+            <Button
+              className="gap-2"
+              onClick={() =>
+                startAuthFlow({
+                  isCreatedCompany: true,
+                })
+              }
+              variant="outline"
+            >
+              Create Company
+            </Button>
             {user ? (
               <Button
                 className="gap-1"

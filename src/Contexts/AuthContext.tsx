@@ -37,6 +37,8 @@ export type AuthContextType = {
   setSession: (session: CognitoUserSession) => void;
   signOut: () => void;
 
+  resetSession: () => void;
+
   startAuthFlow: (options?: {
     isCreatedCompany?: AuthFlowType['isCreatedCompany'];
   }) => void;
@@ -48,6 +50,7 @@ const AuthContext = createContext<AuthContextType>({
   session: undefined,
   signOut: () => {},
   startAuthFlow: () => {},
+  resetSession: () => {},
 });
 
 export const useAuthContext = () => {
@@ -131,8 +134,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       setSession,
       signOut,
       startAuthFlow,
+      resetSession: () => handleGetSession(),
     }),
-    [signOut, startAuthFlow, state],
+    [handleGetSession, signOut, startAuthFlow, state],
   );
 
   return (
