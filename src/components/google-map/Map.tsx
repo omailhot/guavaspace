@@ -22,12 +22,8 @@ export const GoogleMap = ({
     <APIProvider apiKey={API_KEY}>
       <div className={cn(className, '')}>
         <Map
-          center={center}
           className="h-full w-full rounded-md md:rounded-r-none"
-          defaultCenter={{
-            lat: 45.508888,
-            lng: -73.561668,
-          }}
+          defaultCenter={center || { lat: 45.508888, lng: -73.561668 }}
           defaultZoom={defaultZoom}
           disableDefaultUI={true}
           gestureHandling="greedy"

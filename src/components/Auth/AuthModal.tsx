@@ -27,7 +27,7 @@ export type EmailType = v.Output<typeof EmailSchema>;
 const getFormHeaderKey = (step: StepKeys) => {
   switch (step) {
     case 'SIGN_IN':
-      return 'auth:login.title';
+      return 'auth:signin.title';
     case 'SIGN_UP':
       return 'auth:signup.title';
     case 'EMAIL_CONFIRMATION':

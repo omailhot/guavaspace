@@ -1,12 +1,13 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthContext } from '@/Contexts/AuthContext';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { IndexRoute } from '@/routes/home';
 
-import { IndexRoute } from '../../routes/home';
 import { Button } from '../ui/button';
-import Newsletter from './Newsletter';
+import { Copyright } from './copyright';
+import Newsletter from './newsletter/Newsletter';
 
 type Props = {
   className?: string;
@@ -43,7 +44,7 @@ export const Footer = ({ className }: Props) => {
                 onClick={() => startAuthFlow({ isCreatedCompany: true })}
                 variant="ghost"
               >
-                {t('footer:listing')}
+                {t('footer:create-rental')}
               </Button>
             </li>
           </ul>
@@ -66,10 +67,7 @@ export const Footer = ({ className }: Props) => {
           </ul>
         </li>
       </ul>
-      <hr />
-      <span className="flex justify-center py-4">
-        © {new Date().getFullYear()} Guavaspace
-      </span>
+      <Copyright />
     </footer>
   );
 };

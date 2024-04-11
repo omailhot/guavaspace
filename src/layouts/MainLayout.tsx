@@ -1,5 +1,5 @@
-import { Footer } from '@/components/Footer/Footer';
-import { Navigation } from '@/components/header/Navigation/Navigation';
+import { Footer } from '@/components/footer/Footer';
+import { Navigation } from '@/components/navigation/Navigation';
 
 type Props = {
   children: any;

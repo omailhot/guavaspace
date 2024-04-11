@@ -1,6 +1,7 @@
 import './style.css';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { cn } from '../../../lib/utils';
 import { OfficeAddressType } from '../../../types/Office';
@@ -132,6 +133,8 @@ export const AutocompleteInput = ({
 }: Props) => {
   const [stateValue, setStateValue] = useState(value);
 
+  const { t } = useTranslation('search');
+
   useEffect(() => {
     setStateValue(value);
   }, [value]);
@@ -192,6 +195,7 @@ export const AutocompleteInput = ({
       name={name}
       onBlur={onBlur}
       onChange={(e) => handleOnChange(e.target.value)}
+      placeholder={t('search:location')}
       ref={inputRef}
       value={stateValue}
     />

@@ -1,4 +1,4 @@
-import { OfficeProvider } from '../../Contexts/OfficeContext';
+import { OfficeProvider } from '../../contexts/OfficeContext';
 import { getFullS3Path } from '../../lib/path';
 import { cn } from '../../lib/utils';
 import { OfficeDetailsRoute } from '../../routes/offices/details';
