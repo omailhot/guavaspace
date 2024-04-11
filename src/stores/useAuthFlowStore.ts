@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { StepAlertProps } from '../components/Auth/forms/StepAlert';
+import { StepAlertProps } from '../components/auth/forms/StepAlert';
 import { useDialogsStore } from './useDialogsStore';
 
 export const STEP_KEYS = [

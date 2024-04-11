@@ -1,4 +1,15 @@
 {
+  "capacity": {
+    "title": "Capacité",
+    "description": "Combien de places avez-vous besoin?",
+    "seat_one": "Poste",
+    "seat_other": "Postes",
+    "room_one": "Salle",
+    "room_other": "Salles"
+  },
+  "currency": {
+    "canadian": "CAD$"
+  },
   "errors": {
     "InvalidParameterException": "Veuillez remplir tous les champs.",
     "InvalidPasswordException": "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",

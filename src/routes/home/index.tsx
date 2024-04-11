@@ -22,10 +22,9 @@ const Component = () => {
     <MainLayout>
       <div className="container">
         <Branding />
-        <div className="sticky z-50 hidden bg-white pb-5 md:top-[var(--nav-height)] md:flex">
-          <SearchForm className="w-full" from={IndexRoute.fullPath} />
+        <div className="sticky z-50 hidden bg-white pb-4 md:top-[var(--nav-height)] md:flex">
+          <SearchForm className="w-full md:pt-4" from={IndexRoute.fullPath} />
         </div>
-        <hr className="pt-5" />
         <Listing
           className="pb-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           rentalPreviews={rentalPreviews}

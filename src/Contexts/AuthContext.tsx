@@ -1,3 +1,4 @@
+import { NavigateFn } from '@tanstack/react-router';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import {
   createContext,
@@ -13,7 +14,14 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import * as v from 'valibot';
 
-import { AuthModal } from '../components/Auth/AuthModal';
+import { api } from '@/lib/api';
+import { getFullApiPath } from '@/lib/path';
+import {
+  ManagerProfileSchema,
+  ManagerProfileType,
+} from '@/types/ManagerProfile';
+
+import { AuthModal } from '../components/auth/AuthModal';
 import { FullPageLoader } from '../components/loader/FullPageLoader';
 import { getUserSession, handleSignout } from '../lib/cognito/UserPool';
 import {
@@ -23,19 +31,31 @@ import {
 } from '../stores/useAuthFlowStore';
 import { CognitoUserSchema, CognitoUserType } from '../types/User';
 
-export type AuthContextState =
+export const handleManagerProfile = async () => {
+  const profile = await api.get(getFullApiPath('/manager-profile'));
+  return v.parse(ManagerProfileSchema, profile.data);
+};
+
+export type AuthContextState = {
+  isLoadingSession: boolean;
+} & (
   | {
       session: CognitoUserSession;
       user: CognitoUserType;
+      managerProfile?: ManagerProfileType;
     }
   | {
       session: undefined;
       user: undefined;
-    };
+      managerProfile: undefined;
+    }
+);
 
 export type AuthContextType = {
   setSession: (session: CognitoUserSession) => void;
-  signOut: () => void;
+  signOut: (navigate: NavigateFn<any>) => void;
+
+  resetSession: () => void;
 
   startAuthFlow: (options?: {
     isCreatedCompany?: AuthFlowType['isCreatedCompany'];
@@ -46,8 +66,11 @@ const AuthContext = createContext<AuthContextType>({
   setSession: () => {},
   user: undefined,
   session: undefined,
+  managerProfile: undefined,
   signOut: () => {},
   startAuthFlow: () => {},
+  isLoadingSession: true,
+  resetSession: () => {},
 });
 
 export const useAuthContext = () => {
@@ -64,51 +87,79 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState<AuthContextState>({
     user: undefined,
     session: undefined,
+    managerProfile: undefined,
+    isLoadingSession: true,
   });
 
-  const [isLoadingSession, setIsLoadingSession] = useState(true);
-
   const handleGetSession = useCallback(async () => {
+    setState((s) => ({ ...s, isLoadingSession: true }));
+
     try {
       const session = await getUserSession();
 
       setSession(session);
     } catch (error) {
-      setState({ session: undefined, user: undefined });
+      setState({
+        session: undefined,
+        user: undefined,
+        managerProfile: undefined,
+        isLoadingSession: false,
+      });
     }
   }, []);
 
   useEffect(() => {
-    handleGetSession().finally(() => {
-      setIsLoadingSession(false);
-    });
+    handleGetSession();
   }, [handleGetSession]);
 
-  const setSession = (session: CognitoUserSession) => {
+  const setSession = async (session: CognitoUserSession) => {
     try {
       const cognitoUser = session.getIdToken().decodePayload();
 
       const parsedUser = v.parse(CognitoUserSchema, cognitoUser);
 
+      let managerProfile: ManagerProfileType | undefined = undefined;
+
+      try {
+        managerProfile = await handleManagerProfile();
+      } catch (error) {
+        // do nothing
+      }
+
       setState(() => {
         return {
           session,
           user: parsedUser,
+          managerProfile,
+          isLoadingSession: false,
         };
       });
     } catch (error) {
-      setState({ session: undefined, user: undefined });
+      setState({
+        session: undefined,
+        user: undefined,
+        managerProfile: undefined,
+        isLoadingSession: false,
+      });
 
       console.error('AuthContext: setSession', error);
     }
   };
 
-  const signOut = useCallback(() => {
-    handleSignout();
-    setState({ session: undefined, user: undefined });
-
-    toast.info(t('auth:signout.success'));
-  }, [t]);
+  const signOut = useCallback(
+    (navigate: NavigateFn<any>) => {
+      handleSignout();
+      setState({
+        session: undefined,
+        user: undefined,
+        managerProfile: undefined,
+        isLoadingSession: false,
+      });
+      toast.info(t('auth:signout.success'));
+      navigate({ to: '/' });
+    },
+    [t],
+  );
 
   const startAuthFlow: AuthContextType['startAuthFlow'] = useCallback(
     (options) => {
@@ -131,13 +182,14 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       setSession,
       signOut,
       startAuthFlow,
+      resetSession: () => handleGetSession(),
     }),
-    [signOut, startAuthFlow, state],
+    [handleGetSession, signOut, startAuthFlow, state],
   );
 
   return (
     <AuthContext.Provider value={value}>
-      {isLoadingSession ? (
+      {state.isLoadingSession ? (
         <FullPageLoader />
       ) : (
         <>

@@ -189,7 +189,7 @@ export const SignUpForm = () => {
             )}
           />
           <SwitchButton switchToStep="SIGN_IN">
-            {t('auth:login.switch_to_signup')}
+            {t('auth:signin.switch_to_signup')}
           </SwitchButton>
 
           <SubmitButton

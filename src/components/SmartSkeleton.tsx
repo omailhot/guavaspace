@@ -15,7 +15,7 @@ export const SmartSkeleton = ({
 }: PropsWithChildren<Props>) => {
   return (
     <div className={cn(className)}>
-      {isLoading ? <Skeleton className="w-full h-full" /> : children}
+      {isLoading ? <Skeleton className="h-full w-full" /> : children}
     </div>
   );
 };

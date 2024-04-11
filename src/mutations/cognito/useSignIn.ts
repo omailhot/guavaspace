@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-import { useAuthContext } from '../../Contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { handleCogintoError } from '../../lib/cognito/Errors';
 import { handleSignin } from '../../lib/cognito/SignIn';
 import { useAuthFlowStore } from '../../stores/useAuthFlowStore';
@@ -29,7 +29,7 @@ export const useSignIn = () => {
     onSuccess: (data) => {
       setSession(data);
 
-      toast.success(t('auth:login.success'));
+      toast.success(t('auth:signin.success'));
 
       nextStep();
     },

@@ -1,12 +1,15 @@
+import { useNavigate } from '@tanstack/react-router';
 import { differenceInDays } from 'date-fns';
 import * as React from 'react';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as v from 'valibot';
 
 import { cn } from '@/lib/utils';
+import { OfficeReservationRoute } from '@/routes/offices/reservation';
+import { useReservationStore } from '@/stores/useReservationStore';
 
-import { useOfficeContext } from '../../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../../contexts/OfficeContext';
 import { useRentOffice } from '../../../mutations/offices/useRentOffice';
 import { useOfficeRentalPreview } from '../../../queries/useOfficeRentalPreview';
 import { OfficeDetailsSearchParamsSchemaWithDefaults } from '../../../routes/offices/details';
@@ -50,6 +53,28 @@ export const RentPanelDesktop = ({
     searchParams: searchWithDefaults,
   });
 
+  const setData = useReservationStore((s) => s.setData);
+  const navigate = useNavigate();
+
+  const handleSubmit = useCallback(() => {
+    setData({
+      from: searchWithDefaults.from,
+      to: searchWithDefaults.to,
+      seats: searchWithDefaults.seats,
+    });
+    navigate({
+      to: OfficeReservationRoute.fullPath,
+      params: { id: params.id },
+    });
+  }, [
+    navigate,
+    params.id,
+    searchWithDefaults.from,
+    searchWithDefaults.seats,
+    searchWithDefaults.to,
+    setData,
+  ]);
+
   const totalDays = searchWithDefaults.to
     ? differenceInDays(searchWithDefaults.to, searchWithDefaults.from)
     : 1;
@@ -61,7 +86,8 @@ export const RentPanelDesktop = ({
 
   const hasEnoughtSeats = seats >= searchWithDefaults.seats;
 
-  const totalPrice = totalDays * (avgDailyPricePerSeat || 0);
+  const totalPrice =
+    totalDays * searchWithDefaults.seats * (avgDailyPricePerSeat || 0);
 
   const shouldRenderCostSection = seats !== 0 && hasEnoughtSeats;
 
@@ -83,11 +109,11 @@ export const RentPanelDesktop = ({
     }
 
     return (
-      <SubmitButton isLoading={isLoading}>
+      <SubmitButton isLoading={isLoading} onClick={() => handleSubmit()}>
         {t('office:rent_panel.book_now')}
       </SubmitButton>
     );
-  }, [hasEnoughtSeats, isLoading, seats, t]);
+  }, [hasEnoughtSeats, isLoading, seats, t, handleSubmit]);
 
   if (query.isError) {
     return <div>{query.error.message}</div>;
@@ -109,6 +135,7 @@ export const RentPanelDesktop = ({
             <RentPanelTotalSection
               isLoading={isLoading}
               rentalPrice={avgDailyPricePerSeat}
+              seats={searchWithDefaults.seats}
               totalDays={totalDays}
               totalPrice={totalPrice}
             />

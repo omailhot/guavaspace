@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 
 import { handleCogintoError } from '../../../lib/cognito/Errors';
-import { useSignIn } from '../../../mutations/cognito/useSignIn';
+import { useSignIn } from '../../../mutations/useSignIn';
 import { useAuthFlowStore } from '../../../stores/useAuthFlowStore';
 import { SignInSchema, SignInType } from '../../../types/User';
 import { PasswordInput } from '../../form/PasswordInput';
@@ -30,7 +30,7 @@ export const SignInForm = () => {
   const form = useForm<SignInType>({
     resolver: valibotResolver(SignInSchema),
     defaultValues: {
-      email: 'olivierdeschenes9@gmail.com',
+      email: 'olivier.mailhot2@gmail.com',
       password: 'Lol123456@',
     },
     disabled: signInMutation.isPending,
@@ -77,7 +77,7 @@ export const SignInForm = () => {
                 </FormControl>
                 <FormDescription>
                   <SwitchButton switchToStep="FORGOT_PASSWORD">
-                    {t('auth:login.forgot_password')}
+                    {t('auth:signin.forgot_password')}
                   </SwitchButton>
                 </FormDescription>
                 <FormMessage />
@@ -85,7 +85,7 @@ export const SignInForm = () => {
             )}
           />
           <SwitchButton switchToStep="SIGN_UP">
-            {t('auth:signup.switch_to_login')}
+            {t('auth:signup.switch_to_signin')}
           </SwitchButton>
 
           <SubmitButton
