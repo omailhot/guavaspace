@@ -2,11 +2,11 @@ import { Link } from '@tanstack/react-router';
 import { Building2, CircleUserRound, Home, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthContext } from '@/Contexts/AuthContext';
+import { ProfileDropdown } from '@/components/navigation/ProfileDropdown';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 import { IndexRoute } from '../../../routes/home';
-import { ProfileRoute } from '../../../routes/profile';
 import { Button } from '../../ui/button';
 import {
   NavigationMenu,
@@ -74,20 +74,9 @@ export const MobileNavigation = ({ from }: Props) => {
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={navigationMenuTriggerStyle()}
-            >
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               {user ? (
-                <Link
-                  className="focus:bg-transparent [&.active]:text-primary"
-                  to={ProfileRoute.fullPath}
-                >
-                  <div className="gap-2 text-xs">
-                    <CircleUserRound className="mx-auto" strokeWidth={1.5} />
-                    {t('navigation:profile')}
-                  </div>
-                </Link>
+                <ProfileDropdown />
               ) : (
                 <Button
                   className="bg-transparent text-xs text-slate-500 hover:bg-transparent focus:bg-transparent"

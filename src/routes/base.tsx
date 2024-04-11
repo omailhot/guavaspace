@@ -9,26 +9,25 @@ import { Suspense } from 'react';
 
 import { FullPageLoader } from '../components/loader/FullPageLoader';
 import { Toaster } from '../components/ui/sonner';
-import { AuthProvider } from '../Contexts/AuthContext';
+import { AuthContextType } from '../contexts/AuthContext';
 
 export const BaseRoute = createRootRouteWithContext<{
   queryClient: QueryClient;
+  auth: AuthContextType;
 }>()({
   component: () => (
     <Suspense>
-      <AuthProvider>
-        <Suspense fallback={<FullPageLoader />}>
-          <ScrollRestoration />
-          <Outlet />
-        </Suspense>
-        <Suspense>
-          <ReactQueryDevtools
-            buttonPosition="bottom-left"
-            initialIsOpen={false}
-          />
-        </Suspense>
-        <Toaster richColors theme="light" />
-      </AuthProvider>
+      <Suspense fallback={<FullPageLoader />}>
+        <ScrollRestoration />
+        <Outlet />
+      </Suspense>
+      <Suspense>
+        <ReactQueryDevtools
+          buttonPosition="bottom-left"
+          initialIsOpen={false}
+        />
+      </Suspense>
+      <Toaster richColors theme="light" />
     </Suspense>
   ),
 });

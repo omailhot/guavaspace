@@ -46,7 +46,9 @@
     "cancel": "Annuler",
     "days_one": "jour",
     "days_other": "jours",
-    "no_seats_available": "Aucun place disponible",
+    "seats_one": "poste",
+    "seats_other": "postes",
+    "no_seats_available": "Aucune place disponible",
     "not_enough_seats": "Seulement {{count}} places disponibles"
   }
 }
