@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-import { useOfficeContext } from '../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { cn } from '../../lib/utils';
 import { GlobalDialog } from '../GlobalDialog';
 import { resolveImagePath } from './OfficeDetails';

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-import { useOfficeContext } from '../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import {
   GET_DEFAULT_ROOMS,
   GET_DEFAULT_SEATS,

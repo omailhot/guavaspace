@@ -1,4 +1,4 @@
-import { useOfficeContext } from '../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { cn } from '../../lib/utils';
 import AddressRenderer from '../google-map/AddressRenderer';
 

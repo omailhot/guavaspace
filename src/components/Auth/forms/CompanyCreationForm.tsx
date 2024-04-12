@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Input } from '@/components/ui/input';
 
-import { useAuthContext } from '../../../Contexts/AuthContext';
+import { useAuthContext } from '../../../contexts/AuthContext';
 import { useCreateCompany } from '../../../mutations/useCreateCompany';
 import { useAuthFlowStore } from '../../../stores/useAuthFlowStore';
 import { SubmitButton } from '../../form/SubmitButton';

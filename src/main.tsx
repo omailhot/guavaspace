@@ -26,12 +26,14 @@ import { OfficeEditImagesRoute } from './routes/offices/edit/preview/sections/Im
 import { OfficeEditRentalOffersRoute } from './routes/offices/edit/rental-offers';
 import { OfficeReservationRoute } from './routes/offices/reservation';
 import { ProfileRoute } from './routes/profile';
+import { ProfileCompanyRoute } from './routes/profile/sections/Company';
+import { ProfileUserRoute } from './routes/profile/sections/User';
 import { UserRoute } from './routes/user';
 
 const routeTree = RootRoute.addChildren([
   IndexRoute,
 
-  ProfileRoute,
+  ProfileRoute.addChildren([ProfileUserRoute, ProfileCompanyRoute]),
   OfficesRoute,
   OfficeEditRoute.addChildren([
     OfficeEditPreviewRoute.addChildren([

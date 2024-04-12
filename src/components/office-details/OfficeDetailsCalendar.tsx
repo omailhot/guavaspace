@@ -1,7 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { DateRange } from 'react-day-picker';
 
-import { useOfficeContext } from '../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { GET_DEFAULT_FROM_DATE } from '../../routes/offices/details';
 import { CalendarInput } from '../form/CalendarInput';
 import { getOfficeRoute } from './OfficeDetails';
