@@ -40,7 +40,7 @@ export const DataTable = <TData, TValue>({
 
   return (
     <div className={cn('rounded-md border', className)}>
-      <Table className='relative'>
+      <Table className="relative">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

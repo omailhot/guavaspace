@@ -59,7 +59,7 @@ export const DatePickerWithRange = (
                       !form.getValues('dateRange.from') &&
                         'text-muted-foreground',
                     )}
-                    id="date"
+                    id="DatePickerWithRange"
                     variant="outline"
                   >
                     <CalendarDays className="mr-2 h-4 w-4" />

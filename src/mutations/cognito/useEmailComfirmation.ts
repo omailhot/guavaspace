@@ -6,21 +6,22 @@ import { handleCogintoError } from '../../lib/cognito/Errors';
 import { handleEmailConfirmation } from '../../lib/cognito/SignIn';
 import { useAuthFlowStore } from '../../stores/useAuthFlowStore';
 
+type Params = {
+  username: string;
+  code: string;
+};
+
+const _handleEmailConfirm = async (data: Params) => {
+  await handleEmailConfirmation(data.username, data.code);
+};
+
 export const useEmailConfirmation = () => {
   const { t } = useTranslation(['auth']);
   const nextStep = useAuthFlowStore((s) => s.nextStep);
 
   const mutation = useMutation({
     mutationKey: ['signup'],
-    mutationFn: async ({
-      username,
-      code,
-    }: {
-      username: string;
-      code: string;
-    }) => {
-      return handleEmailConfirmation(username, code);
-    },
+    mutationFn: _handleEmailConfirm,
     onError: (error: any) => {
       const parsedError = handleCogintoError(error);
 
@@ -32,6 +33,7 @@ export const useEmailConfirmation = () => {
           title: t('auth:email_confirmation.success.title'),
           description: t('auth:email_confirmation.success.description'),
         },
+        firstLoginAfterSignup: true,
       });
 
       toast.success(t('auth:email_confirmation.success.title'), {
