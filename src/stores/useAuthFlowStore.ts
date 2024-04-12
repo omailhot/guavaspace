@@ -33,6 +33,7 @@ export type AuthFlowState = {
   step: StepType;
   username?: string;
   isCreatedCompany: boolean;
+  firstLoginAfterSignup: boolean;
 };
 
 export type AuthFlowType = {
@@ -47,6 +48,7 @@ export type AuthFlowType = {
 
   nextStep: (options?: {
     needsToConfirmEmail?: boolean;
+    firstLoginAfterSignup?: boolean;
     alert?: StepAlertProps;
   }) => void;
 } & AuthFlowState;
@@ -60,6 +62,7 @@ export const useAuthFlowStore = create<AuthFlowType>()(
         step: DEFAULT_STEP,
         isCreatedCompany: false,
         needsToConfirmEmail: false,
+        firstLoginAfterSignup: false,
 
         setStep: (step) => {
           if (typeof step === 'string') {
@@ -121,6 +124,7 @@ export const useAuthFlowStore = create<AuthFlowType>()(
 
             return {
               ...state,
+              firstLoginAfterSignup: options?.firstLoginAfterSignup ?? false,
               step: { key: nextStep ?? 'SIGN_IN', alert: options?.alert },
             };
           });

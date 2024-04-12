@@ -83,7 +83,7 @@ export const OfficeDetailsCalendarInput = ({
             !searchWithDefaults && 'text-muted-foreground',
           )}
           disabled={disabled}
-          id="date"
+          id="OfficeDetailsCalendarInput"
           variant="outline"
         >
           <CalendarDays className="mr-2 h-4 w-4" />

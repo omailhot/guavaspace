@@ -26,11 +26,14 @@ export const SignInForm = () => {
   const { t } = useTranslation(['auth']);
   const signInMutation = useSignIn();
   const step = useAuthFlowStore((s) => s.step);
+  const firstLoginAfterSignup = useAuthFlowStore(
+    (s) => s.firstLoginAfterSignup,
+  );
 
   const form = useForm<SignInType>({
     resolver: valibotResolver(SignInSchema),
     defaultValues: {
-      email: 'olivier.mailhot2@gmail.com',
+      email: 'opaxxgaming@gmail.com',
       password: 'Lol123456@',
     },
     disabled: signInMutation.isPending,
@@ -48,7 +51,10 @@ export const SignInForm = () => {
         <form
           className="grid gap-4 pt-4"
           onSubmit={form.handleSubmit((values) =>
-            signInMutation.mutate(values),
+            signInMutation.mutate({
+              ...values,
+              isFirstLogin: firstLoginAfterSignup,
+            }),
           )}
         >
           {step.alert ? <StepAlert {...step.alert} /> : null}
