@@ -29,7 +29,7 @@ const Component = () => {
 
   return (
     <div className="grid grid-cols-[100%] lg:grid-cols-[30%_70%]">
-      <div className="mx-5 flex max-h-body flex-1 flex-col gap-10 overflow-y-auto pb-10 lg:mx-0">
+      <div className="flex max-h-body flex-1 flex-col gap-10 overflow-y-auto pb-10 md:mx-5 lg:mx-0">
         <Outlet />
       </div>
       <div className="relative hidden max-h-body w-full overflow-y-auto lg:grid">

@@ -15,9 +15,17 @@ import {
 export const fetchRentalPreviews = async (search?: SearchType) => {
   const searchParams = new URLSearchParams();
   if (search?.location.lat && search?.location.lng) {
-    searchParams.append('lng', String(search?.location.lng));
-    searchParams.append('lat', String(search?.location.lat));
+    searchParams.append('longitude', String(search?.location.lng));
+    searchParams.append('latitude', String(search?.location.lat));
+  } else {
+    const position: GeolocationPosition = await new Promise((res, rej) => {
+      navigator.geolocation.getCurrentPosition(res, rej);
+    });
+
+    searchParams.append('longitude', String(position.coords.longitude));
+    searchParams.append('latitude', String(position.coords.latitude));
   }
+
   searchParams.append(
     'startDate',
     formatDateToQueryParams(search?.dateRange.from ?? GET_DEFAULT_FROM_DATE()),

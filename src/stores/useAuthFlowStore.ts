@@ -50,6 +50,7 @@ export type AuthFlowType = {
     needsToConfirmEmail?: boolean;
     firstLoginAfterSignup?: boolean;
     alert?: StepAlertProps;
+    currentStep?: StepKeys;
   }) => void;
 } & AuthFlowState;
 
@@ -90,7 +91,9 @@ export const useAuthFlowStore = create<AuthFlowType>()(
           set((state) => {
             let nextStep: StepKeys | null = null;
 
-            switch (state.step.key) {
+            const currentStep = options?.currentStep ?? state.step.key;
+
+            switch (currentStep) {
               case 'FORGOT_PASSWORD':
                 nextStep = 'RESET_PASSWORD';
                 break;
@@ -116,9 +119,11 @@ export const useAuthFlowStore = create<AuthFlowType>()(
                 break;
             }
 
-            if (!nextStep) {
+            if (options?.currentStep || !nextStep) {
               useDialogsStore.getState().toggleModal('AUTH');
+            }
 
+            if (!nextStep) {
               return state;
             }
 

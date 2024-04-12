@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 
 import { handleCogintoError } from '../../../lib/cognito/Errors';
-import { useSignIn } from '../../../mutations/useSignIn';
+import { useSignIn } from '../../../mutations/cognito/useSignIn';
 import { useAuthFlowStore } from '../../../stores/useAuthFlowStore';
 import { SignInSchema, SignInType } from '../../../types/User';
 import { PasswordInput } from '../../form/PasswordInput';

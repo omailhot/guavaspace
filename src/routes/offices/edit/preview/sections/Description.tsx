@@ -4,11 +4,7 @@ import { OfficeEditDescriptionSection } from '../../../../../components/office-e
 import { OfficeEditPreviewRoute } from '..';
 
 const Component = () => {
-  return (
-    <div>
-      <OfficeEditDescriptionSection />
-    </div>
-  );
+  return <OfficeEditDescriptionSection />;
 };
 
 export const OfficeEditDescriptionRoute = createRoute({

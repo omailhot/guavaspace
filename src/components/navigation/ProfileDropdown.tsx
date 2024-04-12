@@ -7,6 +7,7 @@ import {
   LogOut,
   Pencil,
   PlusSquare,
+  UserCircle,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -22,12 +23,21 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { DashboardRoute } from '@/routes/dashboard';
 import { DashboardAdminRoute } from '@/routes/dashboard/admin';
 
+import { ProfileUserRoute } from '../../routes/profile/sections/User';
+import { CognitoUserType } from '../../types/User';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+
+const avatarFallback = (user: CognitoUserType) => {
+  return user.given_name[0].toUpperCase() + user.family_name[0].toUpperCase();
+};
 
 export const ProfileDropdown = () => {
   const { user, managerProfile, signOut, startAuthFlow } = useAuthContext();
   const { i18n } = useTranslation('navigation');
   const navigate = useNavigate();
+
+  if (!user) return null;
+
   return (
     <div className="ml-auto flex gap-3">
       <DropdownMenu>
@@ -42,11 +52,10 @@ export const ProfileDropdown = () => {
                     height: '32px',
                   }}
                 >
-                  <AvatarImage
-                    alt="@shadcn"
-                    src="https://github.com/olivier-deschenes.png"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarImage alt={user?.given_name ?? 'N/A'} />
+                  <AvatarFallback className="bg-primary text-white">
+                    {avatarFallback(user)}
+                  </AvatarFallback>
                 </Avatar>
               </div>
             </Button>
@@ -68,12 +77,17 @@ export const ProfileDropdown = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
+            onClick={() => navigate({ to: ProfileUserRoute.fullPath })}
+          >
+            <UserCircle className="mr-2 h-4 w-4" />
+            {t('navigation:profile')}
+          </DropdownMenuItem>
+          <DropdownMenuItem
             onClick={() => navigate({ to: DashboardRoute.fullPath })}
           >
             <LayoutDashboard className="mr-2 h-4 w-4" />
             {t('navigation:user-dashboard')}
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
           {managerProfile ? (
             <>
               <DropdownMenuItem
@@ -85,7 +99,7 @@ export const ProfileDropdown = () => {
               <DropdownMenuSeparator />
             </>
           ) : null}
-          <DropdownMenuItem onClick={() => signOut(navigate)}>
+          <DropdownMenuItem onClick={() => signOut(navigate as any)}>
             <LogOut className="mr-2 h-4 w-4" />
             {t('navigation:logout')}
           </DropdownMenuItem>

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { IndexRoute } from '@/routes/home';
 
 import { Button } from '../ui/button';
-import { Copyright } from './copyright';
+import { Copyright } from './Copyright';
 import Newsletter from './newsletter/Newsletter';
 
 type Props = {

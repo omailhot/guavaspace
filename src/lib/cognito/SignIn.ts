@@ -27,6 +27,7 @@ export async function handleSignin({ email, password }: SignInType) {
   return new Promise<CognitoUserSession>((resolve, reject) => {
     user.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
+        console.log('authenticateUser');
         resolve(result);
       },
       onFailure: (err) => {

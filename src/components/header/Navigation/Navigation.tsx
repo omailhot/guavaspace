@@ -71,7 +71,7 @@ export const Navigation = ({ className }: Props) => {
             {user ? (
               <Button
                 className="gap-1"
-                onClick={() => signOut(navigate)}
+                onClick={() => signOut(navigate as any)}
                 variant="ghost"
               >
                 <LogOut size={16} />

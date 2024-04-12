@@ -1,0 +1,17 @@
+{
+  "navigation": {
+    "user": "Utilisateur",
+    "company": "Entreprise"
+  },
+  "title": "Compte",
+  "user": {
+    "title": "Compte Utilisateur"
+  },
+  "company": {
+    "title": "Compte Entreprise",
+    "disabled_message": {
+      "title": "Fonctionnalité non disponible",
+      "message": "La modification d'un entreprise n'est pas encore disponible."
+    }
+  }
+}

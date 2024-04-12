@@ -143,7 +143,7 @@ export const OfficeEditRentalsSection = () => {
   const dateRange = form.watch('dateRange');
 
   return (
-    <div className="ml-5 mr-5 flex flex-col items-start gap-5 lg:ml-0 lg:flex-row">
+    <div className="flex flex-col items-start gap-5 lg:ml-0 lg:mr-5 lg:flex-row">
       <Card className="h-auto w-full lg:w-1/3">
         <Form {...form}>
           <form className="grid gap-4" onSubmit={form.handleSubmit(onSubmit)}>

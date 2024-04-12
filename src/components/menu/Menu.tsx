@@ -32,13 +32,13 @@ export const Menu = ({
   title,
 }: React.PropsWithChildren<MenuProps>) => {
   return (
-    <div className="flex flex-col p-5 lg:h-body lg:items-center">
-      <Card className="flex h-full w-full flex-col">
+    <div className="flex flex-col p-0 pb-5 md:p-5 lg:items-center">
+      <Card className="flex w-full flex-col">
         <CardContent className="p-0">
           <CardHeader className="border-b">
             <CardTitle>{title}</CardTitle>
           </CardHeader>
-          <CardBody className="flex flex-row justify-center gap-1.5 p-1.5 lg:flex-col">
+          <CardBody className="flex flex-row justify-center gap-1.5 p-0 md:p-1.5 lg:flex-col">
             {children}
           </CardBody>
         </CardContent>

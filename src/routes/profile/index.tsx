@@ -5,16 +5,18 @@ import {
   useNavigate,
   useRouterState,
 } from '@tanstack/react-router';
-import { CircleUser } from 'lucide-react';
+import { Building, CircleUser } from 'lucide-react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, SubNav } from '../../components/menu/Menu';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { MainLayout } from '../../layouts/MainLayout';
 import { BaseRoute } from '../base';
 
 const Component = () => {
-  const { t } = useTranslation(['edit_office', 'office']);
+  const { t } = useTranslation(['profile']);
+  const { managerProfile } = useAuthContext();
 
   const router = useRouterState();
   const navigate = useNavigate({ from: ProfileRoute.fullPath });
@@ -33,14 +35,23 @@ const Component = () => {
   return (
     <MainLayout>
       <div className="mx-auto flex w-full flex-col lg:grid lg:max-w-[1920px] lg:grid-cols-[20%_80%]">
-        <Menu title={t('edit_office:sub_nav_panel.title')}>
+        <Menu title={t('profile:title')}>
           <SubNav
             icon={<CircleUser />}
             params={{}}
             search={{}}
-            text={t('edit_office:sub_nav_panel.links.description.label')}
+            text={t('profile:navigation.user')}
             to="/profile/user/"
           />
+          {managerProfile ? (
+            <SubNav
+              icon={<Building />}
+              params={{}}
+              search={{}}
+              text={t('profile:navigation.company')}
+              to="/profile/user/company"
+            />
+          ) : null}
         </Menu>
         <div className="h-body lg:mt-5">
           <Outlet />

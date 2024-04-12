@@ -5,7 +5,6 @@ import * as v from 'valibot';
 
 import { getFullS3Path } from '@/lib/path';
 import { cn, getLowestRankPicturePath } from '@/lib/utils';
-import { useRentOffice } from '@/mutations/useRentOffice';
 import { useOfficeReservation } from '@/queries/useOfficeReservation';
 import {
   OfficeDetailsRoute,
@@ -15,6 +14,7 @@ import { OfficeReservationRoute } from '@/routes/offices/reservation';
 import { useReservationStore } from '@/stores/useReservationStore';
 import { OfficeType } from '@/types/Office';
 
+import { useRentOffice } from '../../mutations/offices/useRentOffice';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { ReservationTotalSection } from './sections/ReservationTotalSection';
 

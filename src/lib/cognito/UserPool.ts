@@ -30,8 +30,9 @@ export async function getUserSession(): Promise<CognitoUserSession> {
       if (err) {
         reject(parseCognitoError(err));
       } else {
-        const _session = session as CognitoUserSession;
+        resolve(session as CognitoUserSession);
 
+        /* const _session = session as CognitoUserSession;
         user.refreshSession(_session.getRefreshToken(), (err, session) => {
           if (err) {
             user.signOut(() => {
@@ -40,7 +41,7 @@ export async function getUserSession(): Promise<CognitoUserSession> {
           } else {
             resolve(session as CognitoUserSession);
           }
-        });
+        }); */
       }
     });
   });

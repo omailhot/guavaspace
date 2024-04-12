@@ -59,6 +59,7 @@ export type AuthContextType = {
 
   startAuthFlow: (options?: {
     isCreatedCompany?: AuthFlowType['isCreatedCompany'];
+    forcedStep?: StepKeys;
   }) => void;
 } & AuthContextState;
 
@@ -92,6 +93,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   });
 
   const handleGetSession = useCallback(async () => {
+    console.log('handleGetSession');
+
     setState((s) => ({ ...s, isLoadingSession: true }));
 
     try {
@@ -148,6 +151,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const signOut = useCallback(
     (navigate: NavigateFn<any>) => {
+      console.log('signOut');
+
       handleSignout();
       setState({
         session: undefined,
@@ -163,7 +168,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const startAuthFlow: AuthContextType['startAuthFlow'] = useCallback(
     (options) => {
-      let key: StepKeys = 'SIGN_IN';
+      let key: StepKeys = options?.forcedStep ?? 'SIGN_IN';
 
       const userLoggedIn = !!state.user;
 
