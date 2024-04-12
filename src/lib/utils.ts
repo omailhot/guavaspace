@@ -31,3 +31,34 @@ export function getLowestRankPicturePath(pictures: OfficePictureType[]) {
 export function generateRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function getUserPosition(): Promise<GeolocationPosition> {
+  return new Promise((resolve) => {
+    let resolved = false;
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        resolve(position);
+        resolved = true;
+      });
+    }
+
+    // Use default values if getCurrentPosition didn't resolve
+    setTimeout(() => {
+      if (!resolved) {
+        resolve({
+          coords: {
+            latitude: 45.508888,
+            longitude: -73.561668,
+            accuracy: 0,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: 0,
+        });
+      }
+    }, 50);
+  });
+}

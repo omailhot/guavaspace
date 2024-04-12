@@ -39,6 +39,8 @@ export const IndexRoute = createRoute({
   getParentRoute: () => BaseRoute,
   component: Component,
   path: '/',
-  loader: (opts) =>
-    opts.context.queryClient.ensureQueryData(fetchRentalPreviewsQuery()),
+  loader: async (opts) =>
+    opts.context.queryClient.ensureQueryData(
+      fetchRentalPreviewsQuery(undefined),
+    ),
 });
