@@ -236,7 +236,7 @@ export const OfficeEditRentalsSection = () => {
           </form>
         </Form>
       </Card>
-      <Card className="max-w-[100vw] flex-1 overflow-x-auto lg:max-w-none">
+      <Card className="w-full max-w-[100vw] flex-1 overflow-x-auto lg:max-w-none">
         <Table isLoading={isLoading}>
           <TableCaption className="pb-5">
             {t('edit_office:edit_panel.features.table.caption')}
