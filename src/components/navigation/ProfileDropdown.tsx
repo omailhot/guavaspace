@@ -22,7 +22,6 @@ import {
 import { useAuthContext } from '@/contexts/AuthContext';
 import { DashboardRoute } from '@/routes/dashboard';
 import { DashboardAdminRoute } from '@/routes/dashboard/admin';
-import { CreateOfficeRoute } from '@/routes/offices/create';
 
 import { ProfileUserRoute } from '../../routes/profile/sections/User';
 import { CognitoUserType } from '../../types/User';
