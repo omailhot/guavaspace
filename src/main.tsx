@@ -31,7 +31,6 @@ import { UserRoute } from './routes/user';
 
 const routeTree = RootRoute.addChildren([
   IndexRoute,
-
   ProfileRoute.addChildren([ProfileUserRoute, ProfileCompanyRoute]),
   OfficesRoute,
   OfficeEditRoute.addChildren([

@@ -23,6 +23,7 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { DashboardRoute } from '@/routes/dashboard';
 import { DashboardAdminRoute } from '@/routes/dashboard/admin';
 
+import { CreateOfficeRoute } from '../../routes/offices/create';
 import { ProfileUserRoute } from '../../routes/profile/sections/User';
 import { CognitoUserType } from '../../types/User';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -69,12 +70,25 @@ export const ProfileDropdown = () => {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-64">
-          <DropdownMenuItem
-            onClick={() => startAuthFlow({ isCreatedCompany: true })}
-          >
-            <PlusSquare className="mr-2 h-4 w-4" />
-            {t('navigation:create-rental')}
-          </DropdownMenuItem>
+          {managerProfile ? (
+            <DropdownMenuItem
+              onClick={() =>
+                navigate({
+                  to: CreateOfficeRoute.fullPath,
+                })
+              }
+            >
+              <PlusSquare className="mr-2 h-4 w-4" />
+              {t('navigation:create-rental')}
+            </DropdownMenuItem>
+          ) : (
+            <DropdownMenuItem
+              onClick={() => startAuthFlow({ isCreatedCompany: true })}
+            >
+              <PlusSquare className="mr-2 h-4 w-4" />
+              {t('navigation:create-company')}
+            </DropdownMenuItem>
+          )}
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => navigate({ to: ProfileUserRoute.fullPath })}

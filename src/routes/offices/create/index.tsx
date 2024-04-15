@@ -8,16 +8,14 @@ import { MainLayout } from '@/layouts/MainLayout';
 import { SearchSchema } from '@/types/Search';
 
 import { PageLoader } from '../../../components/loader/PageLoader';
-import {
-  OfficeDescriptionType,
-  OfficeEditDescriptionForm,
-} from '../../../components/office-edit/sections/OfficeEditDescriptionForm';
+import { OfficeDescriptionType } from '../../../components/office-edit/sections/OfficeEditDescriptionForm';
 import {
   CreateOfficeType,
   useCreateOffice,
 } from '../../../mutations/offices/useCreateOffice';
 import { BaseRoute } from '../../base';
 import { OfficeEditAmenitiesRoute } from '../edit/preview/sections/Amenities';
+import { OfficeCreateDescriptionForm } from './OfficeCreateDescriptionForm';
 
 const Component = () => {
   const { t } = useTranslation(['create_office']);
@@ -58,8 +56,7 @@ const Component = () => {
     <MainLayout>
       <div className="container flex h-body items-center justify-center gap-[20rem]">
         <div className="w-1/2">
-          <OfficeEditDescriptionForm
-            isCreate
+          <OfficeCreateDescriptionForm
             isError={isError}
             isLoading={isLoading}
             onSubmit={onSubmit}
