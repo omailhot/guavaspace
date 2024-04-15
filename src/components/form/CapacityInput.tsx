@@ -3,6 +3,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { Minus, Plus, UsersRound } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { parse } from 'valibot';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,6 +18,7 @@ import { useOfficeContext } from '../../contexts/OfficeContext';
 import {
   GET_DEFAULT_ROOMS,
   GET_DEFAULT_SEATS,
+  OfficeDetailsSearchParamsSchemaWithDefaults,
 } from '../../routes/offices/details';
 import { getOfficeRoute } from '../office-details/OfficeDetails';
 
@@ -42,12 +44,18 @@ export const CapacityInput = ({ disabled }: Props) => {
   const route = getOfficeRoute(isEdit);
 
   const { t } = useTranslation(['search']);
-  const { seats, rooms } = route.useSearch();
+  const searchParams = route.useSearch();
+
   const navigate = useNavigate({ from: route.fullPath });
 
+  const searchWithDefaults = parse(
+    OfficeDetailsSearchParamsSchemaWithDefaults,
+    searchParams,
+  );
+
   const [state, setState] = useState({
-    seats,
-    rooms,
+    rooms: searchWithDefaults.rooms,
+    seats: searchWithDefaults.seats,
   });
 
   const handleValueChange = (section: SectionKey, value: number) => {
@@ -59,17 +67,20 @@ export const CapacityInput = ({ disabled }: Props) => {
 
   const inputLabel = useMemo(() => {
     const label: string[] = [];
-
-    if (seats) {
-      label.push(`${seats} ${t('search:capacity.seat', { count: seats })}`);
+    if (searchWithDefaults.seats) {
+      label.push(
+        `${searchWithDefaults.seats} ${t('search:capacity.seat', { count: searchWithDefaults.seats })}`,
+      );
     }
 
-    if (rooms) {
-      label.push(`${rooms} ${t('search:capacity.room', { count: rooms })}`);
+    if (searchWithDefaults.rooms) {
+      label.push(
+        `${searchWithDefaults.rooms} ${t('search:capacity.room', { count: searchWithDefaults.rooms })}`,
+      );
     }
 
     return label.length ? label.join(' ') : t('search:capacity.title');
-  }, [rooms, seats, t]);
+  }, [searchWithDefaults.rooms, searchWithDefaults.seats, t]);
 
   const handleClose = () => {
     navigate({
@@ -92,7 +103,7 @@ export const CapacityInput = ({ disabled }: Props) => {
         <Button
           className={cn(
             'min-w-52 justify-start font-normal',
-            !seats && !rooms && 'text-muted-foreground',
+            !state.seats && !state.rooms && 'text-muted-foreground',
           )}
           disabled={disabled}
           variant="outline"

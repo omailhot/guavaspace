@@ -92,7 +92,7 @@ const Component = () => {
                   )}
                 />
                 <FormItem className="flex flex-col">
-                  <FormLabel>{t('auth:fields.company_image.label')}</FormLabel>
+                  <FormLabel>{t('auth:fields.company_name.image')}</FormLabel>
                   <img
                     className="w-48 rounded-md"
                     src={getFullS3Path(managerProfile.company.companyLogoPath)}

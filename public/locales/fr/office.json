@@ -49,6 +49,7 @@
     "seats_one": "poste",
     "seats_other": "postes",
     "no_seats_available": "Aucune place disponible",
+    "select_seats": "Sélectionner le nombre de places",
     "not_enough_seats": "Seulement {{count}} places disponibles"
   }
 }

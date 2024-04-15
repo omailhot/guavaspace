@@ -107,13 +107,21 @@ export const RentPanelDesktop = ({
         </Button>
       );
     }
+    
+    if (searchWithDefaults.seats === 0 && !isLoading) {
+      return (
+        <Button disabled variant="secondary">
+          {t('office:rent_panel.select_seats', { count: seats })}
+        </Button>
+      );
+    }
 
     return (
       <SubmitButton isLoading={isLoading} onClick={() => handleSubmit()}>
         {t('office:rent_panel.book_now')}
       </SubmitButton>
     );
-  }, [hasEnoughtSeats, isLoading, seats, t, handleSubmit]);
+  }, [seats, isLoading, hasEnoughtSeats, searchWithDefaults.seats, t, handleSubmit]);
 
   if (query.isError) {
     return <div>{query.error.message}</div>;
