@@ -14,12 +14,6 @@ type Params = SignInType & {
   isFirstLogin: boolean;
 };
 
-const _handleSignIn = async (values: Params) => {
-  const response = await handleSignin(values);
-
-  return { response, isFirstLogin: values.isFirstLogin };
-};
-
 export const useSignIn = () => {
   const { setSession } = useAuthContext();
   const { t } = useTranslation(['auth']);
@@ -27,7 +21,17 @@ export const useSignIn = () => {
   const nextStep = useAuthFlowStore((s) => s.nextStep);
 
   const mutation = useMutation({
-    mutationFn: _handleSignIn,
+    mutationFn: async (values: Params) => {
+      const response = await handleSignin(values);
+
+      await setSession(response);
+
+      if (values.isFirstLogin) {
+        await api.post(getFullApiPath('/customer-profile'));
+      }
+
+      return { response, isFirstLogin: values.isFirstLogin };
+    },
     onError: (error: any) => {
       const parsedError = handleCogintoError(error);
 
@@ -39,13 +43,7 @@ export const useSignIn = () => {
 
       return parsedError;
     },
-    onSuccess: async (data) => {
-      setSession(data.response);
-
-      if (data.isFirstLogin) {
-        await api.post(getFullApiPath('/customer-profile'));
-      }
-
+    onSuccess: async () => {
       toast.success(t('auth:signin.success'));
 
       nextStep();

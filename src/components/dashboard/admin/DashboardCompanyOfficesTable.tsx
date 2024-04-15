@@ -38,6 +38,10 @@ export const DashboardCompanyOfficesTable = ({ className }: Props) => {
       accessorKey: 'image',
       header: () => t('dashboard:image'),
       cell: ({ row }) => {
+        if (!row.getValue('image')) {
+          return 'N/A';
+        }
+
         return (
           <img
             alt={row.getValue('title')}
@@ -73,7 +77,7 @@ export const DashboardCompanyOfficesTable = ({ className }: Props) => {
     listData.push({
       id: office.officeId,
       title: office.officeName,
-      image: office.officePictures[0].picturePath,
+      image: office.officePictures[0]?.picturePath,
     });
   });
   return (

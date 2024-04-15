@@ -52,7 +52,7 @@ export type AuthContextState = {
 );
 
 export type AuthContextType = {
-  setSession: (session: CognitoUserSession) => void;
+  setSession: (session: CognitoUserSession) => Promise<void>;
   signOut: (navigate: NavigateFn<any>) => void;
 
   resetSession: () => void;
@@ -64,7 +64,7 @@ export type AuthContextType = {
 } & AuthContextState;
 
 const AuthContext = createContext<AuthContextType>({
-  setSession: () => {},
+  setSession: async () => {},
   user: undefined,
   session: undefined,
   managerProfile: undefined,
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     try {
       const session = await getUserSession();
 
-      setSession(session);
+      await setSession(session);
     } catch (error) {
       setState({
         session: undefined,
