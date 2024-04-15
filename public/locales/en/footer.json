@@ -1,0 +1,16 @@
+{
+  "home": "Home",
+  "business": "Business",
+  "create-rental": "List a workspace",
+  "listing": "List a workspace",
+  "language": "Guavaspace en Français",
+  "support": "Support",
+  "newsletter": {
+    "title": "Receive our newsletter",
+    "description": "Subscribe to our newsletter to receive news about our projects and exclusive offers.",
+    "label": "Email Address",
+    "placeholder": "Enter your email address",
+    "submit": "Subscribe",
+    "success": "Thank you for subscribing to our newsletter!"
+  }
+}

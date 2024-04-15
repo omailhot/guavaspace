@@ -1,0 +1,123 @@
+{
+  "description_panel": {
+    "success": "The description has been successfully updated."
+  },
+  "edit_panel": {
+    "create_title": "Create an office",
+    "edit_title": "Edit office",
+    "features": {
+      "add": "Add a feature",
+      "messages": {
+        "delete": {
+          "error": "An error occurred while deleting the feature.",
+          "success": "The feature has been successfully deleted."
+        },
+        "post": {
+          "error": "An error occurred while adding the feature.",
+          "success": "The feature has been successfully added."
+        },
+        "put": {
+          "error": "An error occurred while updating the features.",
+          "success": "The features have been successfully updated."
+        }
+      },
+      "no_features": "No features found",
+      "search": "Search",
+      "table": {
+        "caption": "List of features",
+        "columns": {
+          "change_order": "Actions",
+          "name": "Feature"
+        }
+      },
+      "title": "Edit features"
+    },
+    "fields": {
+      "address": {
+        "label": "Address"
+      },
+      "officeName": {
+        "label": "Office Name"
+      },
+      "street2": {
+        "label": "Address (Line 2)"
+      }
+    },
+    "images": {
+      "messages": {
+        "post": {
+          "error": "An error occurred while adding the images.",
+          "success": "The images have been successfully added."
+        },
+        "put": {
+          "error": "An error occurred while updating the images.",
+          "success": "The images have been successfully updated."
+        }
+      },
+      "table": {
+        "add": "Add images",
+        "caption": "List of images",
+        "columns": {
+          "change_order": "Actions",
+          "image": "Image"
+        }
+      },
+      "title": "Edit images"
+    },
+    "rentals": {
+      "messages": {
+        "delete": {
+          "error": "An error occurred while deleting the rental offer.",
+          "success": "The rental offer has been successfully deleted."
+        },
+        "post": {
+          "error": "An error occurred while adding the rental offer.",
+          "success": "The rental offers have been successfully added."
+        },
+        "put": {
+          "error": "An error occurred while updating the rental offers.",
+          "success": "The rental offers have been successfully updated."
+        }
+      },
+      "table": {
+        "add": "Add rental offers",
+        "caption": "List of rental offers",
+        "columns": {
+          "date_range": "Period"
+        }
+      },
+      "title": "Add a rental offer"
+    }
+  },
+  "sub_nav_panel": {
+    "links": {
+      "description": {
+        "label": "Description"
+      },
+      "features": {
+        "label": "Features"
+      },
+      "images": {
+        "label": "Images"
+      },
+      "rental_offers": {
+        "label": "Rental Offers"
+      }
+    },
+    "title": "Sections"
+  },
+  "titles": {
+    "create": {
+      "edit_panel": "Create an office",
+      "features": "Add features",
+      "images": "Add images",
+      "rentals": "Add rental offers"
+    },
+    "edit": {
+      "edit_panel": "Edit office",
+      "features": "Edit features",
+      "images": "Edit images",
+      "rentals": "Edit rental offers"
+    }
+  }
+}

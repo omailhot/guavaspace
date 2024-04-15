@@ -1,4 +1,11 @@
 {
+  "login_required:": "Vous devez être connecté pour accéder à cette page.",
+  "home": {
+    "title": "Trouvez un espace de travail qui vous convient.",
+    "description1": "Louez ou sous-louez des espaces de bureaux",
+    "description2": "facilement",
+    "description3": "sur la plateforme de location en ligne"
+  },
   "capacity": {
     "title": "Capacité",
     "description": "Combien de places avez-vous besoin?",
@@ -25,7 +32,7 @@
     "invalid_address": "Adresse invalide."
   },
   "buttons": {
-    "loading": "Chargement...",
+    "loading": "Chargement",
     "continue": "Continuer",
     "close": "Fermer"
   }

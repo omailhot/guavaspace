@@ -33,14 +33,14 @@ export const Footer = ({ className }: Props) => {
               </Link>
             </li>
           </ul>
+          <hr className="my-4 md:hidden" />
         </li>
-        <hr className="my-4 md:hidden" />
         <li>
           <h3 className="font-semibold">{t('footer:business')}</h3>
           <ul>
             <li>
               <Button
-                className="text-md px-0 font-normal hover:bg-transparent"
+                className="text-md p-0 font-normal hover:bg-transparent"
                 onClick={() => startAuthFlow({ isCreatedCompany: true })}
                 variant="ghost"
               >
@@ -48,8 +48,8 @@ export const Footer = ({ className }: Props) => {
               </Button>
             </li>
           </ul>
+          <hr className="mb-4 mt-2 md:hidden" />
         </li>
-        <hr className="my-4 md:hidden" />
         <li>
           <h3 className="font-semibold">{t('footer:support')}</h3>
           <ul>

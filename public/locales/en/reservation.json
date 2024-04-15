@@ -1,0 +1,19 @@
+{
+  "title": "Booking Request",
+  "returnToDetails": "Return to listing",
+  "yourReservation": "Your booking",
+  "payment": "Payment",
+  "dates": "Dates",
+  "confirmAndPay": "Confirm and Pay",
+  "success": "Booking successfully made",
+  "total": "Total",
+  "subtotal": "Subtotal",
+  "side_details": {
+    "title": "Price Details",
+    "total": "Total",
+    "days_one": "day",
+    "days_other": "days",
+    "seats_one": "seat",
+    "seats_other": "seats"
+  }
+}

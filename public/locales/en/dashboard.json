@@ -1,0 +1,17 @@
+{
+  "rentals": "My bookings",
+  "title": "Title",
+  "image": "Image",
+  "dates": "Dates",
+  "dailyPricePerSeatPaid": "Price/seat/day",
+  "days": "days",
+  "seats": "seats",
+  "total": "Total",
+  "edit": "Edit",
+  "delete": "Delete",
+  "admin": {
+    "title": "Manage listings",
+    "manage": "Active listings of"
+  },
+  "noRentals": "You do not have any active bookings."
+}

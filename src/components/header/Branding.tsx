@@ -5,7 +5,7 @@ export const Branding = () => {
         Trouvez un espace de travail qui vous convient.
       </h1>
       <p className="mt-4">
-        Louez ou sous-louer des espaces de bureaux{' '}
+        Louez ou sous-louez des espaces de bureaux{' '}
         <span className="text-primary">facilement</span> sur la plateforme de
         location en ligne
       </p>
