@@ -1,0 +1,4 @@
+:root {
+  --nav-height: 5rem;
+  --body-height: calc(100vh - var(--nav-height));
+}

@@ -1,0 +1,39 @@
+{
+  "login_required": "You must be signed in to access this page. Please sign in to continue.",
+  "home": {
+    "title": "Find a workspace that suits you.",
+    "description1": "Rent or sublet office spaces",
+    "description2": "easily",
+    "description3": "on the online rental platform"
+  },
+  "capacity": {
+    "title": "Capacity",
+    "description": "How many seats do you need?",
+    "seat_one": "Seat",
+    "seat_other": "Seats",
+    "room_one": "Room",
+    "room_other": "Rooms"
+  },
+  "currency": {
+    "canadian": "CAD$"
+  },
+  "errors": {
+    "InvalidParameterException": "Please fill out all fields.",
+    "InvalidPasswordException": "Password must be at least 8 characters long, contain uppercase and lowercase letters, a number, and a special character.",
+    "NotAuthorizedException": "Incorrect email address or password.",
+    "TooManyRequestsException": "Too many login attempts, please try again later.",
+    "UsernameExistsException": "This email address is already in use.",
+    "default": "An error occurred.",
+    "UserNotConfirmedException": "Please confirm your email address.",
+    "CodeMismatchException": "Incorrect verification code.",
+    "UserNotFoundException": "User not found.",
+    "LimitExceededException": "Too many login attempts, please try again later.",
+    "defaultTitle": "Error",
+    "invalid_address": "Invalid address."
+  },
+  "buttons": {
+    "loading": "Loading",
+    "continue": "Continue",
+    "close": "Close"
+  }
+}

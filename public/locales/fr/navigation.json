@@ -1,0 +1,12 @@
+{
+  "home": "Accueil",
+  "explore": "Explorer",
+  "login": "Connexion",
+  "logout": "Déconnexion",
+  "create-rental": "Lister un espace de travail",
+  "profile": "Profil",
+  "rent": "Lister",
+  "user-dashboard": "Mes locations",
+  "admin-dashboard": "Gérer les annonces",
+  "create-company": "Créer une entreprise"
+}

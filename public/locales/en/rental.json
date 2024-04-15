@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "start_date": {
+      "label": "Start Date"
+    },
+    "end_date": {
+      "label": "End Date"
+    },
+    "daily_price": {
+      "label": "Daily Price ($)"
+    },
+    "seats": {
+      "label": "Available Seats"
+    },
+    "min_duration_days": {
+      "label": "Minimum Duration in Days"
+    },
+    "date_range": {
+      "label": "Date Range",
+      "errors": {
+        "intersection": "Date ranges must not overlap"
+      },
+      "infinity": "Infinity"
+    }
+  },
+  "no_results": "No rental offers"
+}

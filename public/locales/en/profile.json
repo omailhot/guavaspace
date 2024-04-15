@@ -1,0 +1,17 @@
+{
+  "navigation": {
+    "user": "User",
+    "company": "Company"
+  },
+  "title": "Account",
+  "user": {
+    "title": "User Account"
+  },
+  "company": {
+    "title": "Company Account",
+    "disabled_message": {
+      "title": "Feature not available",
+      "message": "Editing a company is not yet available."
+    }
+  }
+}

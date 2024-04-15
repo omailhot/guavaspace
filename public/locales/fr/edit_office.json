@@ -1,0 +1,123 @@
+{
+  "description_panel": {
+    "success": "La description a été mise à jour avec succès."
+  },
+  "edit_panel": {
+    "create_title": "Créer un bureau",
+    "edit_title": "Modifier le bureau",
+    "features": {
+      "add": "Ajouter une fonctionnalité",
+      "messages": {
+        "delete": {
+          "error": "Une erreur est survenue lors de la suppression de la fonctionnalité.",
+          "success": "La fonctionnalité a été supprimée avec succès."
+        },
+        "post": {
+          "error": "Une erreur est survenue lors de l'ajout de la fonctionnalité.",
+          "success": "La fonctionnalité a été ajoutée avec succès."
+        },
+        "put": {
+          "error": "Une erreur est survenue lors de la mise à jour des fonctionnalités.",
+          "success": "Les fonctionnalités ont été mises à jour avec succès."
+        }
+      },
+      "no_features": "Aucune fonctionnalité trouvée",
+      "search": "Rechercher",
+      "table": {
+        "caption": "Liste des fonctionnalités",
+        "columns": {
+          "change_order": "Actions",
+          "name": "Fonctionnalité"
+        }
+      },
+      "title": "Modifier les fonctionnalités"
+    },
+    "fields": {
+      "address": {
+        "label": "Adresse"
+      },
+      "officeName": {
+        "label": "Nom du bureau"
+      },
+      "street2": {
+        "label": "Adresse (suite)"
+      }
+    },
+    "images": {
+      "messages": {
+        "post": {
+          "error": "Une erreur est survenue lors de l'ajout des images.",
+          "success": "Les images ont été ajoutées avec succès."
+        },
+        "put": {
+          "error": "Une erreur est survenue lors de la mise à jour des images.",
+          "success": "Les images ont été mises à jour avec succès."
+        }
+      },
+      "table": {
+        "add": "Ajouter des images",
+        "caption": "Liste des images",
+        "columns": {
+          "change_order": "Actions",
+          "image": "Image"
+        }
+      },
+      "title": "Modifier les images"
+    },
+    "rentals": {
+      "messages": {
+        "delete": {
+          "error": "Une erreur est survenue lors de la suppression de l'offre de location.",
+          "success": "L'offre de location a été supprimé avec succès."
+        },
+        "post": {
+          "error": "Une erreur est survenue lors de l'ajout de l'offre de location.",
+          "success": "Les offres de location ont été ajoutés avec succès."
+        },
+        "put": {
+          "error": "Une erreur est survenue lors de la mise à jour des offres de location.",
+          "success": "Les offres de location ont été mis à jour avec succès."
+        }
+      },
+      "table": {
+        "add": "Ajouter des images",
+        "caption": "Liste des images",
+        "columns": {
+          "date_range": "Période"
+        }
+      },
+      "title": "Ajouter une offre de location"
+    }
+  },
+  "sub_nav_panel": {
+    "links": {
+      "description": {
+        "label": "Description"
+      },
+      "features": {
+        "label": "Fonctionnalités"
+      },
+      "images": {
+        "label": "Images"
+      },
+      "rental_offers": {
+        "label": "Offre de locations"
+      }
+    },
+    "title": "Sections"
+  },
+  "titles": {
+    "create": {
+      "edit_panel": "Créer un bureau",
+      "features": "Ajouter des fonctionnalités",
+      "images": "Ajouter des images",
+      "rentals": "Ajouter des offres de location"
+    },
+    "edit": {
+      "edit_panel": "Modifier le bureau",
+      "features": "Modifier les fonctionnalités",
+      "images": "Modifier les images",
+      "rentals": "Modifier les offres de location"
+    }
+  }
+}
