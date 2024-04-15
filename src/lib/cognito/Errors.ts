@@ -23,52 +23,52 @@ export const parseCognitoError = (err: any): CognitoError => {
     case 'UsernameExistsException':
       return {
         code: 'UsernameExistsException',
-        messageKey: 'translation:erros.UsernameExistsException',
+        messageKey: 'translation:errors.UsernameExistsException',
       };
     case 'TooManyRequestsException':
       return {
         code: 'TooManyRequestsException',
-        messageKey: 'translation:erros.TooManyRequestsException',
+        messageKey: 'translation:errors.TooManyRequestsException',
       };
     case 'InvalidParameterException':
       return {
         code: 'InvalidParameterException',
-        messageKey: 'translation:erros.InvalidParameterException',
+        messageKey: 'translation:errors.InvalidParameterException',
       };
     case 'InvalidPasswordException': {
       return {
         code: 'InvalidPasswordException',
-        messageKey: 'translation:erros.InvalidPasswordException',
+        messageKey: 'translation:errors.InvalidPasswordException',
       };
     }
     case 'CodeMismatchException': {
       return {
         code: 'CodeMismatchException',
-        messageKey: 'translation:erros.CodeMismatchException',
+        messageKey: 'translation:errors.CodeMismatchException',
       };
     }
     case 'NotAuthorizedException': {
       return {
         code: 'NotAuthorizedException',
-        messageKey: 'translation:erros.NotAuthorizedException',
+        messageKey: 'translation:errors.NotAuthorizedException',
       };
     }
     case 'UserNotConfirmedException': {
       return {
         code: 'UserNotConfirmedException',
-        messageKey: 'translation:erros.UserNotConfirmedException',
+        messageKey: 'translation:errors.UserNotConfirmedException',
       };
     }
     case 'UserNotFoundException': {
       return {
         code: 'UserNotFoundException',
-        messageKey: 'translation:erros.UserNotFoundException',
+        messageKey: 'translation:errors.UserNotFoundException',
       };
     }
     case 'LimitExceededException': {
       return {
         code: 'LimitExceededException',
-        messageKey: 'translation:erros.LimitExceededException',
+        messageKey: 'translation:errors.LimitExceededException',
       };
     }
     /**
@@ -79,7 +79,7 @@ export const parseCognitoError = (err: any): CognitoError => {
     default:
       return {
         code: 'DefaultError',
-        messageKey: 'translation:erros.default',
+        messageKey: 'translation:errors.default',
       };
   }
 };
@@ -87,6 +87,6 @@ export const parseCognitoError = (err: any): CognitoError => {
 export const handleCogintoError = (err: CognitoError | any): CognitoError => {
   return {
     code: err?.code ?? 'DefaultError',
-    messageKey: err?.messageKey ?? 'translation:erros.default',
+    messageKey: err?.messageKey ?? 'translation:errors.default',
   };
 };

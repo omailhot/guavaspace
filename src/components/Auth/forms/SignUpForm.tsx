@@ -42,7 +42,7 @@ export const SignUpForm = () => {
   const form = useForm<UserType>({
     resolver: valibotResolver(UserSchema),
     defaultValues: {
-      email: 'olivierdeschenes9@gmail.com',
+      email: 'opaxxgaming@gmail.com',
       password: 'Lol123456@',
       family_name: 'Deschenes',
       given_name: 'Olivier',
@@ -189,7 +189,7 @@ export const SignUpForm = () => {
             )}
           />
           <SwitchButton switchToStep="SIGN_IN">
-            {t('auth:login.switch_to_signup')}
+            {t('auth:signin.switch_to_signup')}
           </SwitchButton>
 
           <SubmitButton

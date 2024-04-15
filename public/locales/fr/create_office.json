@@ -1,7 +1,7 @@
 {
   "panel": {},
   "messages": {
-    "sucess": {
+    "success": {
       "title": "Votre bureau a été créé avec succès",
       "description": "Vous pouvez maintenant ajouter vos fonctionnalités, images et plages horaires."
     }

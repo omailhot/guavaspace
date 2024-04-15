@@ -1,12 +1,13 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthContext } from '@/Contexts/AuthContext';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { IndexRoute } from '@/routes/home';
 
-import { IndexRoute } from '../../routes/home';
 import { Button } from '../ui/button';
-import Newsletter from './Newsletter';
+import { Copyright } from './Copyright';
+import Newsletter from './newsletter/Newsletter';
 
 type Props = {
   className?: string;
@@ -32,23 +33,23 @@ export const Footer = ({ className }: Props) => {
               </Link>
             </li>
           </ul>
+          <hr className="my-4 md:hidden" />
         </li>
-        <hr className="my-4 md:hidden" />
         <li>
           <h3 className="font-semibold">{t('footer:business')}</h3>
           <ul>
             <li>
               <Button
-                className="text-md px-0 font-normal hover:bg-transparent"
+                className="text-md p-0 font-normal hover:bg-transparent"
                 onClick={() => startAuthFlow({ isCreatedCompany: true })}
                 variant="ghost"
               >
-                {t('footer:listing')}
+                {t('footer:create-rental')}
               </Button>
             </li>
           </ul>
+          <hr className="mb-4 mt-2 md:hidden" />
         </li>
-        <hr className="my-4 md:hidden" />
         <li>
           <h3 className="font-semibold">{t('footer:support')}</h3>
           <ul>
@@ -66,10 +67,7 @@ export const Footer = ({ className }: Props) => {
           </ul>
         </li>
       </ul>
-      <hr />
-      <span className="flex justify-center py-4">
-        © {new Date().getFullYear()} Guavaspace
-      </span>
+      <Copyright />
     </footer>
   );
 };

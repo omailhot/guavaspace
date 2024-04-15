@@ -46,6 +46,13 @@ export async function handleEmailConfirmation(email: string, code: string) {
   return new Promise((resolve, reject) => {
     user.confirmRegistration(code, true, (err, result) => {
       if (err) {
+        if (
+          err.message ===
+          'User cannot be confirmed. Current status is CONFIRMED'
+        ) {
+          return resolve(result);
+        }
+
         reject(parseCognitoError(err));
       }
 

@@ -4,7 +4,7 @@ import { CalendarDays } from 'lucide-react';
 import { useRef } from 'react';
 import { parse } from 'valibot';
 
-import { useOfficeContext } from '../../Contexts/OfficeContext';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { useLocale } from '../../hooks/useLocale';
 import { cn } from '../../lib/utils';
 import {
@@ -83,7 +83,7 @@ export const OfficeDetailsCalendarInput = ({
             !searchWithDefaults && 'text-muted-foreground',
           )}
           disabled={disabled}
-          id="date"
+          id="OfficeDetailsCalendarInput"
           variant="outline"
         >
           <CalendarDays className="mr-2 h-4 w-4" />

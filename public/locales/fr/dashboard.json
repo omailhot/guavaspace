@@ -1,0 +1,17 @@
+{
+  "rentals": "Mes locations",
+  "title": "Titre",
+  "image": "Image",
+  "dates": "Dates",
+  "dailyPricePerSeatPaid": "Prix/poste/jour",
+  "days": "jours",
+  "seats": "postes",
+  "total": "Total",
+  "edit": "Modifier",
+  "delete": "Supprimer",
+  "admin": {
+    "title": "Gérer les annonces",
+    "manage": "Annonces actives de"
+  },
+  "noRentals": "Vous n'avez pas de locations actives."
+}

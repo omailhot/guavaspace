@@ -23,7 +23,7 @@ export const useForgotPassword = () => {
     onSuccess: (_, variables) => {
       setUsername(variables.username);
 
-      nextStep();
+      nextStep({ currentStep: 'FORGOT_PASSWORD' });
     },
   });
 

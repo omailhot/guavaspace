@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 
 import { handleCogintoError } from '../../../lib/cognito/Errors';
-import { useSignIn } from '../../../mutations/cognito/useSignIn';
+import { useSignIn } from '../../../../../useSignIn';
 import { useAuthFlowStore } from '../../../stores/useAuthFlowStore';
 import { SignInSchema, SignInType } from '../../../types/User';
 import { PasswordInput } from '../../form/PasswordInput';
@@ -26,11 +26,14 @@ export const SignInForm = () => {
   const { t } = useTranslation(['auth']);
   const signInMutation = useSignIn();
   const step = useAuthFlowStore((s) => s.step);
+  const firstLoginAfterSignup = useAuthFlowStore(
+    (s) => s.firstLoginAfterSignup,
+  );
 
   const form = useForm<SignInType>({
     resolver: valibotResolver(SignInSchema),
     defaultValues: {
-      email: 'olivierdeschenes9@gmail.com',
+      email: 'opaxxgaming@gmail.com',
       password: 'Lol123456@',
     },
     disabled: signInMutation.isPending,
@@ -48,7 +51,10 @@ export const SignInForm = () => {
         <form
           className="grid gap-4 pt-4"
           onSubmit={form.handleSubmit((values) =>
-            signInMutation.mutate(values),
+            signInMutation.mutate({
+              ...values,
+              isFirstLogin: firstLoginAfterSignup,
+            }),
           )}
         >
           {step.alert ? <StepAlert {...step.alert} /> : null}
@@ -77,7 +83,7 @@ export const SignInForm = () => {
                 </FormControl>
                 <FormDescription>
                   <SwitchButton switchToStep="FORGOT_PASSWORD">
-                    {t('auth:login.forgot_password')}
+                    {t('auth:signin.forgot_password')}
                   </SwitchButton>
                 </FormDescription>
                 <FormMessage />
@@ -85,7 +91,7 @@ export const SignInForm = () => {
             )}
           />
           <SwitchButton switchToStep="SIGN_UP">
-            {t('auth:signup.switch_to_login')}
+            {t('auth:signup.switch_to_signin')}
           </SwitchButton>
 
           <SubmitButton

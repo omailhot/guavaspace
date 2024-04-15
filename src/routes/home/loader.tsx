@@ -3,6 +3,7 @@ import { array, parse } from 'valibot';
 
 import { api } from '@/lib/api';
 import { formatDateToQueryParams, getFullApiPath } from '@/lib/path';
+import { getUserPosition } from '@/lib/utils';
 import { RentalPreviewSchema } from '@/types/RentalPreviews';
 import {
   GET_DEFAULT_FROM_DATE,
@@ -14,10 +15,23 @@ import {
 
 export const fetchRentalPreviews = async (search?: SearchType) => {
   const searchParams = new URLSearchParams();
-  if (search?.location.lat && search?.location.lng) {
-    searchParams.append('lng', String(search?.location.lng));
-    searchParams.append('lat', String(search?.location.lat));
+
+  if (!('geolocation' in navigator)) {
+    searchParams.append('longitude', String(45.508888));
+    searchParams.append('latitude', String(-73.561668));
   }
+  const geolocation = await getUserPosition().then((position) => {
+    return position.coords;
+  });
+
+  searchParams.append('longitude', String(geolocation.longitude));
+  searchParams.append('latitude', String(geolocation.latitude));
+
+  if (search?.location.lat && search?.location.lng) {
+    searchParams.append('longitude', String(search?.location.lng));
+    searchParams.append('latitude', String(search?.location.lat));
+  }
+
   searchParams.append(
     'startDate',
     formatDateToQueryParams(search?.dateRange.from ?? GET_DEFAULT_FROM_DATE()),

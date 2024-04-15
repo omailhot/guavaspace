@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-import { StepAlertProps } from '../components/Auth/forms/StepAlert';
+import { StepAlertProps } from '../components/auth/forms/StepAlert';
 import { useDialogsStore } from './useDialogsStore';
 
 export const STEP_KEYS = [
@@ -33,6 +33,7 @@ export type AuthFlowState = {
   step: StepType;
   username?: string;
   isCreatedCompany: boolean;
+  firstLoginAfterSignup: boolean;
 };
 
 export type AuthFlowType = {
@@ -47,7 +48,9 @@ export type AuthFlowType = {
 
   nextStep: (options?: {
     needsToConfirmEmail?: boolean;
+    firstLoginAfterSignup?: boolean;
     alert?: StepAlertProps;
+    currentStep?: StepKeys;
   }) => void;
 } & AuthFlowState;
 
@@ -60,6 +63,7 @@ export const useAuthFlowStore = create<AuthFlowType>()(
         step: DEFAULT_STEP,
         isCreatedCompany: false,
         needsToConfirmEmail: false,
+        firstLoginAfterSignup: false,
 
         setStep: (step) => {
           if (typeof step === 'string') {
@@ -87,7 +91,9 @@ export const useAuthFlowStore = create<AuthFlowType>()(
           set((state) => {
             let nextStep: StepKeys | null = null;
 
-            switch (state.step.key) {
+            const currentStep = options?.currentStep ?? state.step.key;
+
+            switch (currentStep) {
               case 'FORGOT_PASSWORD':
                 nextStep = 'RESET_PASSWORD';
                 break;
@@ -113,14 +119,17 @@ export const useAuthFlowStore = create<AuthFlowType>()(
                 break;
             }
 
-            if (!nextStep) {
+            if (options?.currentStep || !nextStep) {
               useDialogsStore.getState().toggleModal('AUTH');
+            }
 
+            if (!nextStep) {
               return state;
             }
 
             return {
               ...state,
+              firstLoginAfterSignup: options?.firstLoginAfterSignup ?? false,
               step: { key: nextStep ?? 'SIGN_IN', alert: options?.alert },
             };
           });

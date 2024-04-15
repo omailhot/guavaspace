@@ -3,21 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+      name="description"
+      content="Guavaspace is a platform that connects people with the best office rental spaces in the world."
+    />
+    <link rel="canonical" href="https://guavaspace.com" />
+    <link rel="sitemap" type="application/xml" href="public/sitemap.xml" />
+    <link rel="icon" href="public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
-    <script async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4psXod-ejnYBQyikAjyoxkWZC6T22YB4&loading=async&libraries=places&callback=initMap">
-    </script>
+      rel="stylesheet"
+    />
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4psXod-ejnYBQyikAjyoxkWZC6T22YB4&loading=async&libraries=places&callback=initMap"
+    ></script>
     <script>
       function initMap() {}
     </script>
     <title>Guavaspace</title>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-VKLM21FMVL"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-VKLM21FMVL');
+  </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

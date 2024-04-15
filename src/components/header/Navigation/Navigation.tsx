@@ -3,11 +3,11 @@ import { t } from 'i18next';
 import { Globe, LogOut, PlusSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { CreateOfficeRoute } from '@/routes/offices/create';
 
-import { useAuthContext } from '../../../Contexts/AuthContext';
 import { IndexRoute } from '../../../routes/home';
-import { CreateOfficeRoute } from '../../../routes/offices/create';
 import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { Button } from '../../ui/button';
 
@@ -57,10 +57,21 @@ export const Navigation = ({ className }: Props) => {
               <PlusSquare size={18} />
               {t('navigation:listing')}
             </Button>
+            <Button
+              className="gap-2"
+              onClick={() =>
+                startAuthFlow({
+                  isCreatedCompany: true,
+                })
+              }
+              variant="outline"
+            >
+              Create Company
+            </Button>
             {user ? (
               <Button
                 className="gap-1"
-                onClick={() => signOut()}
+                onClick={() => signOut(navigate as any)}
                 variant="ghost"
               >
                 <LogOut size={16} />
