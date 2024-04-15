@@ -9,8 +9,10 @@ type SubscribeNewsletterParams = {
   email: string;
 };
 
-export const handleSubscribeNewsletter = async ({ email }: SubscribeNewsletterParams) => {
-  const response = await api.post(getFullApiPath(`/newsletter/${email}`));
+export const handleSubscribeNewsletter = async ({
+  email,
+}: SubscribeNewsletterParams) => {
+  const response = await api.post(getFullApiPath(`/newsletter`), { email });
 
   return response.data;
 };
@@ -19,7 +21,8 @@ export const useSubscribeNewsletter = () => {
   const { t } = useTranslation(['newsletter']);
 
   const mutation = useMutation({
-    mutationFn: (params: SubscribeNewsletterParams) => handleSubscribeNewsletter(params),
+    mutationFn: (params: SubscribeNewsletterParams) =>
+      handleSubscribeNewsletter(params),
     onError: (error: any) => {
       const parsedError = handleAPIError(error);
 
