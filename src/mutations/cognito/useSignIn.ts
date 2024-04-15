@@ -43,7 +43,6 @@ export const useSignIn = () => {
       setSession(data.response);
 
       if (data.isFirstLogin) {
-        console.log('First login');
         await api.post(getFullApiPath('/customer-profile'));
       }
 

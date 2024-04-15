@@ -27,7 +27,6 @@ export async function handleSignin({ email, password }: SignInType) {
   return new Promise<CognitoUserSession>((resolve, reject) => {
     user.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        console.log('authenticateUser');
         resolve(result);
       },
       onFailure: (err) => {
@@ -51,8 +50,6 @@ export async function handleEmailConfirmation(email: string, code: string) {
           err.message ===
           'User cannot be confirmed. Current status is CONFIRMED'
         ) {
-          console.log('SAFFFE');
-
           return resolve(result);
         }
 

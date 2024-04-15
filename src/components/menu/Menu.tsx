@@ -13,7 +13,7 @@ export const SubNav = ({ className, icon, text, ...props }: SubNavProps) => {
     <Link
       className={cn(
         className,
-        'justi flex flex-col items-center justify-start gap-3 rounded-md px-3 py-1.5 lg:flex-row [&.active]:bg-primary [&.active]:text-white',
+        'flex flex-col items-center justify-start gap-3 rounded-md px-3 py-1.5 lg:flex-row [&.active]:bg-primary [&.active]:text-white',
       )}
       {...props}
     >

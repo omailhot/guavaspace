@@ -93,8 +93,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   });
 
   const handleGetSession = useCallback(async () => {
-    console.log('handleGetSession');
-
     setState((s) => ({ ...s, isLoadingSession: true }));
 
     try {
@@ -151,8 +149,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   const signOut = useCallback(
     (navigate: NavigateFn<any>) => {
-      console.log('signOut');
-
       handleSignout();
       setState({
         session: undefined,

@@ -291,8 +291,6 @@ export const ProfileUserRoute = createRoute({
             return acc;
           }, {} as any);
 
-          console.log(data);
-
           resolve(v_parse(ProfileUserLoaderSchema, data));
         });
       });

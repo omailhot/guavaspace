@@ -16,8 +16,6 @@ export const handleModifyUser = async (data: ProfileUserFormType) => {
   const user = userPool.getCurrentUser();
 
   if (!user) {
-    console.log('no user');
-
     return;
   }
 

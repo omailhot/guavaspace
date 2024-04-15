@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getFullApiPath } from '../lib/path';
 import { OfficeDetailsSearchParamsType } from '../routes/offices/details';
 import { OfficeType } from '../types/Office';
 
@@ -13,12 +12,6 @@ export const handleOfficeReservation = async ({
   officeId,
   searchParams,
 }: Params) => {
-  const queryUrl = new URLSearchParams();
-
-  console.log({
-    url: getFullApiPath(`/offices/${officeId}/reservation`, queryUrl),
-  });
-
   return {
     availableSeats: searchParams.seats === 10 ? 0 : 25,
     rentalPrice: 100,
