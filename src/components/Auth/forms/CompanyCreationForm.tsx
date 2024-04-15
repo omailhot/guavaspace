@@ -54,7 +54,7 @@ export const CompanyCreationForm = () => {
           />
         </div>
         <div className="flex flex-col">
-          <div>{t('auth:fields.company_name.label')}</div>
+          <div>{t('auth:fields.company_name.image')}</div>
           <Input
             accept={'image/*'}
             onChange={(e) => {
