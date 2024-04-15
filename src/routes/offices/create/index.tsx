@@ -1,10 +1,11 @@
-import { createRoute, useNavigate } from '@tanstack/react-router';
+import { createRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import * as v from 'valibot';
 
 import { MobileNavigation } from '@/components/header/Navigation/MobileNavigation';
 import { MainLayout } from '@/layouts/MainLayout';
+import { IndexRoute } from '@/routes/home';
 import { SearchSchema } from '@/types/Search';
 
 import { PageLoader } from '../../../components/loader/PageLoader';
@@ -42,8 +43,8 @@ const Component = () => {
         search: {},
       });
 
-      toast.success(t('create_office:messages.sucess.title'), {
-        description: t('create_office:messages.sucess.description'),
+      toast.success(t('create_office:messages.success.title'), {
+        description: t('create_office:messages.success.description'),
       });
     });
   }
@@ -77,4 +78,11 @@ export const CreateOfficeRoute = createRoute({
   getParentRoute: () => BaseRoute,
   component: Component,
   path: '/offices/create',
+  beforeLoad: ({ context }) => {
+    if (!context.auth.managerProfile) {
+      throw redirect({
+        to: IndexRoute.fullPath,
+      });
+    }
+  },
 });
