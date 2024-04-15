@@ -8,10 +8,10 @@ import { parse } from 'valibot';
 import { OfficeReservationRoute } from '@/routes/offices/reservation';
 import { useReservationStore } from '@/stores/useReservationStore';
 
-import { useOfficeContext } from '../../../contexts/OfficeContext';
 import { useFormatCurrency } from '../../../hooks/useFormatCurrency';
 import { useLocale } from '../../../hooks/useLocale';
 import { useRentOffice } from '../../../mutations/offices/useRentOffice';
+import { useOfficeContext } from '../../../contexts/OfficeContext';
 import { useOfficeRentalPreview } from '../../../queries/useOfficeRentalPreview';
 import { OfficeDetailsSearchParamsSchemaWithDefaults } from '../../../routes/offices/details';
 import { CapacityInput } from '../../form/CapacityInput';
@@ -89,7 +89,8 @@ export const RentPanelMobile = () => {
 
   const hasEnoughtSeats = seats >= searchWithDefaults.seats;
 
-  const totalPrice = totalDays * searchWithDefaults.seats * (avgDailyPricePerSeat || 0);
+  const totalPrice =
+    totalDays * searchWithDefaults.seats * (avgDailyPricePerSeat || 0);
 
   const shouldRenderCostSection = seats !== 0 && hasEnoughtSeats;
 
@@ -123,7 +124,14 @@ export const RentPanelMobile = () => {
         {t('office:rent_panel.book_now')}
       </SubmitButton>
     );
-  }, [seats, isLoading, hasEnoughtSeats, searchWithDefaults.seats, t, handleSubmit]);
+  }, [
+    seats,
+    isLoading,
+    hasEnoughtSeats,
+    searchWithDefaults.seats,
+    t,
+    handleSubmit,
+  ]);
 
   if (query.isError) {
     return <div>{query.error.message}</div>;

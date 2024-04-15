@@ -10,8 +10,8 @@ import { format } from 'date-fns';
 import { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthContext } from '@/contexts/AuthContext';
 import { useCreateRental } from '@/mutations/useCreateRental';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { OfficeReservationConfirmationRoute } from '@/routes/offices/confirmation';
 import { OfficeDetailsRoute } from '@/routes/offices/details';
 import { OfficeReservationRoute } from '@/routes/offices/reservation';

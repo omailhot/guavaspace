@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { useOfficeContext } from '../../contexts/OfficeContext';
 import { cn } from '../../lib/utils';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { useDialogsStore } from '../../stores/useDialogsStore';
 import { OfficePictureType } from '../../types/Picture';
 import { Button } from '../ui/button';

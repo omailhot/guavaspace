@@ -3,9 +3,9 @@ import { Globe, PlusSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Navbar } from '@/components/ui/navbar';
-import { useAuthContext } from '@/contexts/AuthContext';
 import i18n from '@/i18n';
 import { cn } from '@/lib/utils';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { CreateOfficeRoute } from '@/routes/offices/create';
 
 import { Button } from '../ui/button';

@@ -3,8 +3,8 @@ import { Building2, CircleUserRound, Home, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { ProfileDropdown } from '@/components/navigation/ProfileDropdown';
-import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 import { IndexRoute } from '../../../routes/home';
 import { Button } from '../../ui/button';

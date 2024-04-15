@@ -10,8 +10,8 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, SubNav } from '../../components/menu/Menu';
-import { useAuthContext } from '../../contexts/AuthContext';
 import { MainLayout } from '../../layouts/MainLayout';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { BaseRoute } from '../base';
 
 const Component = () => {

@@ -1,6 +1,6 @@
-import { OfficeProvider } from '../../contexts/OfficeContext';
 import { getFullS3Path } from '../../lib/path';
 import { cn } from '../../lib/utils';
+import { OfficeProvider } from '../../contexts/OfficeContext';
 import { OfficeDetailsRoute } from '../../routes/offices/details';
 import { OfficeEditPreviewRoute } from '../../routes/offices/edit/preview';
 import { OfficeType } from '../../types/Office';

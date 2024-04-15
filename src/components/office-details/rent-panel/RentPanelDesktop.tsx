@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 import { OfficeReservationRoute } from '@/routes/offices/reservation';
 import { useReservationStore } from '@/stores/useReservationStore';
 
-import { useOfficeContext } from '../../../contexts/OfficeContext';
 import { useRentOffice } from '../../../mutations/offices/useRentOffice';
+import { useOfficeContext } from '../../../contexts/OfficeContext';
 import { useOfficeRentalPreview } from '../../../queries/useOfficeRentalPreview';
 import { OfficeDetailsSearchParamsSchemaWithDefaults } from '../../../routes/offices/details';
 import { CapacityInput } from '../../form/CapacityInput';
@@ -107,7 +107,7 @@ export const RentPanelDesktop = ({
         </Button>
       );
     }
-    
+
     if (searchWithDefaults.seats === 0 && !isLoading) {
       return (
         <Button disabled variant="secondary">
@@ -121,7 +121,14 @@ export const RentPanelDesktop = ({
         {t('office:rent_panel.book_now')}
       </SubmitButton>
     );
-  }, [seats, isLoading, hasEnoughtSeats, searchWithDefaults.seats, t, handleSubmit]);
+  }, [
+    seats,
+    isLoading,
+    hasEnoughtSeats,
+    searchWithDefaults.seats,
+    t,
+    handleSubmit,
+  ]);
 
   if (query.isError) {
     return <div>{query.error.message}</div>;

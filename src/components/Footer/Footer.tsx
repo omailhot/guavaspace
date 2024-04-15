@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthContext } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { useAuthContext } from '@/contexts/AuthContext';
 import { IndexRoute } from '@/routes/home';
 
 import { Button } from '../ui/button';

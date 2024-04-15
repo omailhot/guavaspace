@@ -2,8 +2,8 @@ import { AdvancedMarker } from '@vis.gl/react-google-maps';
 import { ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { useOfficeContext } from '../../contexts/OfficeContext';
 import { cn } from '../../lib/utils';
+import { useOfficeContext } from '../../contexts/OfficeContext';
 import { GoogleMap } from '../google-map/Map';
 import { Button } from '../ui/button';
 import { SectionTitle } from './SectionTitle';
