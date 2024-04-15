@@ -9,7 +9,6 @@ type Params = {
 };
 
 export const handleOfficeReservation = async ({
-  officeId,
   searchParams,
 }: Params) => {
   return {
