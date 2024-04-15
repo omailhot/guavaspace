@@ -1,9 +1,0 @@
-{
-  "panel": {},
-  "messages": {
-    "success": {
-      "title": "Your office has been successfully created",
-      "description": "You can now add your features, images, and time slots."
-    }
-  }
-}
