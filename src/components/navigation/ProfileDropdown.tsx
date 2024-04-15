@@ -22,7 +22,6 @@ import {
 import { useAuthContext } from '@/contexts/AuthContext';
 import { DashboardRoute } from '@/routes/dashboard';
 import { DashboardAdminRoute } from '@/routes/dashboard/admin';
-import { CreateOfficeRoute } from '@/routes/offices/create';
 
 import { CreateOfficeRoute } from '../../routes/offices/create';
 import { ProfileUserRoute } from '../../routes/profile/sections/User';
@@ -34,7 +33,7 @@ const avatarFallback = (user: CognitoUserType) => {
 };
 
 export const ProfileDropdown = () => {
-  const { user, managerProfile, signOut } = useAuthContext();
+  const { user, managerProfile, signOut, startAuthFlow } = useAuthContext();
   const { i18n } = useTranslation('navigation');
   const navigate = useNavigate();
 
