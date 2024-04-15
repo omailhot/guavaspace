@@ -6,9 +6,11 @@ import {
 } from '@stripe/react-stripe-js';
 import { StripeAddressElementOptions } from '@stripe/stripe-js';
 import { useNavigate } from '@tanstack/react-router';
+import { format } from 'date-fns';
 import { FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useAuthContext } from '@/contexts/AuthContext';
 import { useCreateRental } from '@/mutations/useCreateRental';
 import { OfficeReservationConfirmationRoute } from '@/routes/offices/confirmation';
 import { OfficeDetailsRoute } from '@/routes/offices/details';
@@ -16,7 +18,6 @@ import { OfficeReservationRoute } from '@/routes/offices/reservation';
 import { useReservationStore } from '@/stores/useReservationStore';
 
 import { Button } from '../ui/button';
-import { format } from 'date-fns';
 
 type Props = {
   officeId: string;
@@ -27,7 +28,7 @@ export const OfficeReservationForm = ({ officeId }: Props) => {
   const stripe = useStripe();
   const elements = useElements();
   const { t } = useTranslation('reservation');
-
+  const { user } = useAuthContext();
   const rental = useCreateRental();
 
   const data = useReservationStore((s) => s.data);
@@ -65,6 +66,7 @@ export const OfficeReservationForm = ({ officeId }: Props) => {
         startDate: format(data.from, 'yyyy-MM-dd'),
         endDate: format(data.to, 'yyyy-MM-dd'),
         seats: data.seats,
+        email: { email: user?.email || 'olivier.mailhot2@.com' },
       });
       navigate({
         to: OfficeReservationConfirmationRoute.fullPath,
