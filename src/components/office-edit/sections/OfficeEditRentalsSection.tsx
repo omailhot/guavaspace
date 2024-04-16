@@ -93,7 +93,7 @@ export const OfficeEditRentalsSection = () => {
     if (intersection) {
       form.setError('dateRange', {
         type: 'object',
-        message: formatErrorKey('rental:fields.date_range.erros.intersection'),
+        message: formatErrorKey('rental:fields.date_range.errors.intersection'),
       });
 
       return;

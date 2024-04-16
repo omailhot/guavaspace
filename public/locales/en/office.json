@@ -49,7 +49,7 @@
     "seats_one": "seat",
     "seats_other": "seats",
     "no_seats_available": "No seats available",
-    "select_seats": "Sélectionner le nombre de places",
+    "select_seats": "Select seats amount",
     "not_enough_seats": "Only {{count}} seats available"
   }
 }
