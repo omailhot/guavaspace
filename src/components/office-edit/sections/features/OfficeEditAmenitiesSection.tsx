@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { cn } from '../../../../lib/utils';
 import { useAddAmenity } from '../../../../mutations/amenity/useAddAmenity';
 import { useDeleteAmenity } from '../../../../mutations/amenity/useDeleteAmenity';
 import { useReorderAmenity } from '../../../../mutations/amenity/useReorderAmenity';
@@ -112,13 +113,16 @@ export const OfficeEditAmenitiesSection = ({ id }: Props) => {
         <CardHeader>
           <CardTitle>{t('edit_office:edit_panel.features.title')}</CardTitle>
         </CardHeader>
-        <CardBody className="flex flex-col gap-5">
+        <CardBody className="flex flex-col">
           <AmenitiesDropdown
             disabled={isLoading || !office}
             onAmenityChange={handleOnAmenityChange}
             selectedAmenities={selectedAmenities}
           />
-          <Table isLoading={isLoading}>
+          <Table
+            className={cn(selectedAmenities.length === 0 ? 'hidden' : 'mt-5')}
+            isLoading={isLoading}
+          >
             <TableCaption>
               {t('edit_office:edit_panel.features.table.caption')}
             </TableCaption>

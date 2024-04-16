@@ -11,7 +11,8 @@
   "delete": "Supprimer",
   "admin": {
     "title": "Gérer les annonces",
-    "manage": "Annonces actives de"
+    "manage": "Annonces actives de",
+    "company_title": "Entreprise"
   },
   "noRentals": "Vous n'avez pas de locations actives."
 }

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-router';
 import { ColumnDef } from '@tanstack/react-table';
-import { Pencil } from 'lucide-react';
+import { FilePenLine } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { DataTable } from '@/components/ui/data-table';
@@ -8,6 +8,8 @@ import { getFullS3Path } from '@/lib/path';
 import { DashboardAdminRoute } from '@/routes/dashboard/admin';
 import { OfficeDetailsRoute } from '@/routes/offices/details';
 import { OfficeEditRoute } from '@/routes/offices/edit';
+
+import { Button } from '../../ui/button';
 
 export type RentalsTableType = {
   id: string;
@@ -56,18 +58,15 @@ export const DashboardCompanyOfficesTable = ({ className }: Props) => {
       header: () => t('dashboard:edit'),
       cell: ({ row }) => {
         return (
-          <div className="w-fit">
+          <Button variant="ghost">
             <Link
-              className="cursor-pointer text-center text-muted-foreground hover:text-foreground"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+              onClick={(e) => e.stopPropagation()}
               params={{ id: row.original.id }}
               to={OfficeEditRoute.fullPath}
             >
-              <Pencil />
+              <FilePenLine />
             </Link>
-          </div>
+          </Button>
         );
       },
     },

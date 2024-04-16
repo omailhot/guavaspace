@@ -1,5 +1,4 @@
 import { QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
   createRootRouteWithContext,
   Outlet,
@@ -20,12 +19,6 @@ export const BaseRoute = createRootRouteWithContext<{
       <Suspense fallback={<FullPageLoader />}>
         <ScrollRestoration />
         <Outlet />
-      </Suspense>
-      <Suspense>
-        <ReactQueryDevtools
-          buttonPosition="bottom-left"
-          initialIsOpen={false}
-        />
       </Suspense>
       <Toaster richColors theme="light" />
     </Suspense>

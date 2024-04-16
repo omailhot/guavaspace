@@ -1,5 +1,5 @@
 {
-  "login_required:": "Vous devez être connecté pour accéder à cette page.",
+  "login_required": "Vous devez être connecté pour accéder à cette page.",
   "home": {
     "title": "Trouvez un espace de travail qui vous convient.",
     "description1": "Louez ou sous-louez des espaces de bureaux",
@@ -29,7 +29,8 @@
     "UserNotFoundException": "Utilisateur introuvable.",
     "LimitExceededException": "Trop de tentatives de connexion, veuillez réessayer plus tard.",
     "defaultTitle": "Erreur",
-    "invalid_address": "Adresse invalide."
+    "invalid_address": "Adresse invalide.",
+    "not_manager": "Vous devez être le gestionnaire de cet espace pour effectuer cette action."
   },
   "buttons": {
     "loading": "Chargement",

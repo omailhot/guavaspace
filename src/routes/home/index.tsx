@@ -2,11 +2,11 @@ import { createRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
 import { Branding } from '@/components/header/Branding';
-import { MobileNavigation } from '@/components/header/Navigation/MobileNavigation';
 import { SearchForm } from '@/components/header/Search/SearchForm';
 import { Listing } from '@/components/listing/Listing';
 import { MainLayout } from '@/layouts/MainLayout';
 
+import { MobileNavigation } from '../../components/navigation/MobileNavigation';
 import { BaseRoute } from '../base';
 import { fetchRentalPreviewsQuery } from './loader';
 

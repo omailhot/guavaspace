@@ -1,14 +1,13 @@
-import { createRoute, redirect, useNavigate } from '@tanstack/react-router';
+import { createRoute, useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import * as v from 'valibot';
 
-import { MobileNavigation } from '@/components/header/Navigation/MobileNavigation';
 import { MainLayout } from '@/layouts/MainLayout';
-import { IndexRoute } from '@/routes/home';
 import { SearchSchema } from '@/types/Search';
 
 import { PageLoader } from '../../../components/loader/PageLoader';
+import { MobileNavigation } from '../../../components/navigation/MobileNavigation';
 import { OfficeDescriptionType } from '../../../components/office-edit/sections/OfficeEditDescriptionForm';
 import {
   CreateOfficeType,
@@ -79,10 +78,6 @@ export const CreateOfficeRoute = createRoute({
   component: Component,
   path: '/offices/create',
   beforeLoad: ({ context }) => {
-    if (!context.auth.managerProfile) {
-      throw redirect({
-        to: IndexRoute.fullPath,
-      });
-    }
+    context.auth.ensureManager();
   },
 });

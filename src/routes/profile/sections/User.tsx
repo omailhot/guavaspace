@@ -1,5 +1,5 @@
 import { valibotResolver } from '@hookform/resolvers/valibot';
-import { createRoute, redirect } from '@tanstack/react-router';
+import { createRoute } from '@tanstack/react-router';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { format, parse } from 'date-fns';
 import { CalendarIcon, Settings } from 'lucide-react';
@@ -258,11 +258,7 @@ export const ProfileUserRoute = createRoute({
   component: Component,
   path: '/',
   beforeLoad: ({ context }) => {
-    if (!context.auth.user) {
-      throw redirect({
-        to: '/',
-      });
-    }
+    context.auth.ensureConnected();
   },
   loader: async () => {
     const userPool = new CognitoUserPool(POOL_DATA);

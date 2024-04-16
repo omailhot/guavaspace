@@ -1,10 +1,9 @@
-import { createRoute, redirect } from '@tanstack/react-router';
+import { createRoute } from '@tanstack/react-router';
 
 import { DashboardRentalsTable } from '@/components/dashboard/DashboardRentalsTable';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 
 import { BaseRoute } from '../base';
-import { IndexRoute } from '../home';
 import { fetchRentalsQuery } from './loader';
 
 const Component = () => {
@@ -22,10 +21,6 @@ export const DashboardRoute = createRoute({
   loader: async (opts) =>
     opts.context.queryClient.ensureQueryData(fetchRentalsQuery()),
   beforeLoad: ({ context }) => {
-    if (!context.auth.user) {
-      throw redirect({
-        to: IndexRoute.fullPath,
-      });
-    }
+    context.auth.ensureConnected();
   },
 });

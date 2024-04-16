@@ -1,7 +1,6 @@
 import {
   createRoute,
   Outlet,
-  redirect,
   useNavigate,
   useRouterState,
 } from '@tanstack/react-router';
@@ -10,8 +9,8 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Menu, SubNav } from '../../components/menu/Menu';
-import { MainLayout } from '../../layouts/MainLayout';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { MainLayout } from '../../layouts/MainLayout';
 import { BaseRoute } from '../base';
 
 const Component = () => {
@@ -66,10 +65,6 @@ export const ProfileRoute = createRoute({
   component: Component,
   path: '/profile/user',
   beforeLoad: ({ context }) => {
-    if (!context.auth.user) {
-      throw redirect({
-        to: '/',
-      });
-    }
+    context.auth.ensureConnected();
   },
 });

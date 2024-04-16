@@ -2,8 +2,8 @@ import { Link } from '@tanstack/react-router';
 import { Building2, CircleUserRound, Home, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { cn } from '@/lib/utils';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { cn } from '@/lib/utils';
 import { IndexRoute } from '@/routes/home';
 
 import { SearchForm } from '../search/SearchForm';

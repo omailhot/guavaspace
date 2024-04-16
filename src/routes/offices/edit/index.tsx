@@ -8,9 +8,13 @@ import { CalendarDays, ClipboardList, Image, Text } from 'lucide-react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { PageLoader } from '../../../components/loader/PageLoader';
 import { Menu, SubNav } from '../../../components/menu/Menu';
+import { useManagerProfile } from '../../../hooks/useManagerProfile';
 import { MainLayout } from '../../../layouts/MainLayout';
 import { BaseRoute } from '../../base';
+import { IndexRoute } from '../../home';
+import { fetchOfficeDetailsQuery } from '../details/loader';
 import { OfficeEditAmenitiesRoute } from './preview/sections/Amenities';
 import { OfficeEditImagesRoute } from './preview/sections/Images';
 import { OfficeEditRentalOffersRoute } from './rental-offers';
@@ -22,6 +26,7 @@ const Component = () => {
 
   const router = useRouterState();
   const navigate = useNavigate({ from: OfficeEditRoute.fullPath });
+  const managerProfile = useManagerProfile();
 
   useEffect(() => {
     const redirectUrls = ['/edit', '/edit/'];
@@ -35,6 +40,16 @@ const Component = () => {
       });
     }
   }, [navigate, officeId, router.location.pathname]);
+
+  const office = OfficeEditRoute.useLoaderData();
+
+  useEffect(() => {
+    if (office.company.companyId !== managerProfile.company.companyId) {
+      navigate({
+        to: IndexRoute.fullPath,
+      });
+    }
+  }, [managerProfile.company.companyId, navigate, office.company.companyId]);
 
   return (
     <MainLayout>
@@ -82,4 +97,15 @@ export const OfficeEditRoute = createRoute({
   getParentRoute: () => BaseRoute,
   component: Component,
   path: '/offices/$id/edit',
+  loader: ({ context: { queryClient }, params: { id } }) =>
+    queryClient.ensureQueryData(fetchOfficeDetailsQuery({ officeId: id })),
+  pendingComponent: () => <PageLoader />,
+  beforeLoad: ({ context }) => {
+    if (!context.auth.managerProfile) {
+      console.log('Not manager');
+      context.auth.ensureManager();
+    }
+
+    return;
+  },
 });

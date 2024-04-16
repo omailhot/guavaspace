@@ -1,26 +1,53 @@
-import { createRoute, redirect } from '@tanstack/react-router';
+import { createRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 import { DashboardCompanyOfficesTable } from '@/components/dashboard/admin/DashboardCompanyOfficesTable';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { getFullS3Path } from '@/lib/path';
-import { useAuthContext } from '@/contexts/AuthContext';
 import { BaseRoute } from '@/routes/base';
 
-import { DashboardRoute } from '..';
+import {
+  Card,
+  CardBody,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '../../../components/ui/card';
+import { useManagerProfile } from '../../../hooks/useManagerProfile';
 import { fetchCompanyOfficesQuery } from './loader';
 
 const Component = () => {
-  const { managerProfile } = useAuthContext();
+  const managerProfile = useManagerProfile();
+
+  const { t } = useTranslation('profile');
+
   return (
     <DashboardLayout>
-      <div className="py-4 md:py-12">
-        <DashboardCompanyOfficesTable />
+      <div className="flex flex-col-reverse items-start gap-5 md:mt-12 md:flex-row">
+        <DashboardCompanyOfficesTable className="flex w-full md:w-2/3" />
+        <div className="flex w-full  flex-col gap-5 md:w-1/3">
+          <Card className="flex h-full w-full flex-col">
+            <CardContent className="p-0">
+              <CardHeader className="border-b">
+                <CardTitle>{t('dashboard:admin.company_title')}</CardTitle>
+              </CardHeader>
+              <CardBody className="grid gap-4">
+                <div className="flex flex-col gap-3">
+                  <div>
+                    <h3 className="text-xl font-bold">
+                      {managerProfile.company.companyName}
+                    </h3>
+                  </div>
+                  <img
+                    className="rounded-md"
+                    src={getFullS3Path(managerProfile.company.companyLogoPath)}
+                  />
+                </div>
+              </CardBody>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-      <img
-        alt={managerProfile?.company.companyName}
-        className="mx-auto"
-        src={getFullS3Path(managerProfile?.company.companyLogoPath || '')}
-      />
     </DashboardLayout>
   );
 };
@@ -36,10 +63,6 @@ export const DashboardAdminRoute = createRoute({
       }),
     ),
   beforeLoad: ({ context }) => {
-    if (!context.auth.managerProfile) {
-      throw redirect({
-        to: DashboardRoute.fullPath,
-      });
-    }
+    context.auth.ensureManager();
   },
 });

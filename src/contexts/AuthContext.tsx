@@ -1,4 +1,4 @@
-import { NavigateFn } from '@tanstack/react-router';
+import { NavigateFn, redirect } from '@tanstack/react-router';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import {
   createContext,
@@ -24,6 +24,7 @@ import {
 import { AuthModal } from '../components/auth/AuthModal';
 import { FullPageLoader } from '../components/loader/FullPageLoader';
 import { getUserSession, handleSignout } from '../lib/cognito/UserPool';
+import { IndexRoute } from '../routes/home';
 import {
   AuthFlowType,
   StepKeys,
@@ -56,6 +57,8 @@ export type AuthContextType = {
   signOut: (navigate: NavigateFn<any>) => void;
 
   resetSession: () => void;
+  ensureManager: () => void;
+  ensureConnected: () => void;
 
   startAuthFlow: (options?: {
     isCreatedCompany?: AuthFlowType['isCreatedCompany'];
@@ -72,6 +75,8 @@ const AuthContext = createContext<AuthContextType>({
   startAuthFlow: () => {},
   isLoadingSession: true,
   resetSession: () => {},
+  ensureManager: () => {},
+  ensureConnected: () => {},
 });
 
 export const useAuthContext = () => {
@@ -83,7 +88,7 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const { t } = useTranslation(['auth']);
+  const { t } = useTranslation(['translation', 'auth']);
   const openModal = useAuthFlowStore((s) => s.openModal);
   const [state, setState] = useState<AuthContextState>({
     user: undefined,
@@ -184,6 +189,20 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       signOut,
       startAuthFlow,
       resetSession: () => handleGetSession(),
+      ensureManager: () => {
+        if (state.managerProfile) return;
+
+        throw redirect({
+          to: IndexRoute.fullPath,
+        });
+      },
+      ensureConnected: () => {
+        if (state.user) return;
+
+        throw redirect({
+          to: IndexRoute.fullPath,
+        });
+      },
     }),
     [handleGetSession, signOut, startAuthFlow, state],
   );

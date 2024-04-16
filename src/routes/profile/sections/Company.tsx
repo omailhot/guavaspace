@@ -1,5 +1,5 @@
 import { valibotResolver } from '@hookform/resolvers/valibot';
-import { createRoute, redirect } from '@tanstack/react-router';
+import { createRoute } from '@tanstack/react-router';
 import { AlertTriangle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -26,10 +26,9 @@ import {
   FormMessage,
 } from '../../../components/ui/form';
 import { Input } from '../../../components/ui/input';
+import { useManagerProfile } from '../../../hooks/useManagerProfile';
 import { getFullS3Path } from '../../../lib/path';
-import { useAuthContext } from '../../../contexts/AuthContext';
 import { ProfileRoute } from '..';
-import { ProfileUserRoute } from './User';
 
 export const ProfileUserFormSchema = object({
   companyName: string(),
@@ -39,13 +38,7 @@ export type ProfileUserFormType = Output<typeof ProfileUserFormSchema>;
 const Component = () => {
   const { t } = useTranslation('profile');
 
-  const { managerProfile } = useAuthContext();
-
-  if (!managerProfile) {
-    throw redirect({
-      to: ProfileUserRoute.fullPath,
-    });
-  }
+  const managerProfile = useManagerProfile();
 
   const form = useForm<ProfileUserFormType>({
     resolver: valibotResolver(ProfileUserFormSchema),
@@ -112,10 +105,6 @@ export const ProfileCompanyRoute = createRoute({
   component: Component,
   path: '/company',
   beforeLoad: ({ context }) => {
-    if (!context.auth.user) {
-      throw redirect({
-        to: '/',
-      });
-    }
+    context.auth.ensureConnected();
   },
 });

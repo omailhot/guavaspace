@@ -3,7 +3,6 @@ import { createRoute, Outlet } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { parse } from 'valibot';
 
-import { LoaderText } from '../../../../components/loader/LoaderText';
 import { OfficeDetails } from '../../../../components/office-details/OfficeDetails';
 import { useOfficeEditStore } from '../../../../stores/useOfficeEditStore';
 import { OfficeDetailsSearchParamsSchema } from '../../details';
@@ -48,12 +47,5 @@ export const OfficeEditPreviewRoute = createRoute({
   getParentRoute: () => OfficeEditRoute,
   component: Component,
   path: '/preview',
-  loader: ({ context: { queryClient }, params: { id } }) =>
-    queryClient.ensureQueryData(fetchOfficeDetailsQuery({ officeId: id })),
   validateSearch: (search) => parse(OfficeDetailsSearchParamsSchema, search),
-  pendingComponent: () => (
-    <div className="flex flex-1 items-center justify-center">
-      <LoaderText />
-    </div>
-  ),
 });

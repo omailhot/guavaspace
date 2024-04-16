@@ -11,7 +11,8 @@
   "delete": "Delete",
   "admin": {
     "title": "Manage listings",
-    "manage": "Active listings of"
+    "manage": "Active listings of",
+    "company_title": "Company"
   },
   "noRentals": "You do not have any active bookings."
 }

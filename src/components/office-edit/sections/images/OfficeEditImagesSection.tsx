@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { intersect, object, Output, pick, string } from 'valibot';
 
 import { getFullS3Path } from '../../../../lib/path';
+import { cn } from '../../../../lib/utils';
 import { useCreatePicture } from '../../../../mutations/pictures/useCreatePicture';
 import { useDeletePicture } from '../../../../mutations/pictures/useDeletePicture';
 import { useReorderPicture } from '../../../../mutations/pictures/useReorderPicture';
@@ -12,6 +13,7 @@ import { fetchOfficeDetailsQuery } from '../../../../routes/offices/details/load
 import { OfficeEditImagesRoute } from '../../../../routes/offices/edit/preview/sections/Images';
 import { OfficeAddressSchema, OfficeSchema } from '../../../../types/Office';
 import { OfficePictureType } from '../../../../types/Picture';
+import { LoaderText } from '../../../loader/LoaderText';
 import { Button } from '../../../ui/button';
 import {
   Card,
@@ -120,19 +122,23 @@ export const OfficeEditImagesSection = () => {
         <CardHeader>
           <CardTitle>{t('edit_office:edit_panel.images.title')}</CardTitle>
         </CardHeader>
-        <CardBody className="flex flex-col gap-5">
+        <CardBody className="flex flex-col">
           <div>
             <div
               className="flex cursor-pointer items-center justify-center rounded-lg border border-dashed border-primary py-8"
               onClick={(e) => onLabelClick(e)}
             >
-              <label
-                className="flex cursor-pointer gap-2 text-primary"
-                htmlFor="office-picture-input"
-              >
-                {t('edit_office:edit_panel.images.table.add')}
-                <PlusCircle />
-              </label>
+              {isLoading ? (
+                <LoaderText />
+              ) : (
+                <label
+                  className="flex cursor-pointer gap-2 text-primary"
+                  htmlFor="office-picture-input"
+                >
+                  {t('edit_office:edit_panel.images.table.add')}
+                  <PlusCircle />
+                </label>
+              )}
             </div>
             <Input
               accept={'image/*'}
@@ -145,7 +151,12 @@ export const OfficeEditImagesSection = () => {
             />
           </div>
           <div>
-            <Table isLoading={isLoading}>
+            <Table
+              className={cn(
+                office.officePictures.length === 0 ? 'hidden' : 'mt-5',
+              )}
+              isLoading={isLoading}
+            >
               <TableCaption>
                 {t('edit_office:edit_panel.images.table.caption')}
               </TableCaption>

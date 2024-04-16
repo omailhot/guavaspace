@@ -34,17 +34,23 @@ export const AmenitiesDropdown = ({
 
   const amenities = query.data ?? [];
 
+  const loading = query.isPending || query.isLoading;
+
   return (
     <Popover onOpenChange={setOpen} open={open}>
       <PopoverTrigger asChild>
         <Button
           aria-expanded={open}
           className="justify-between"
-          disabled={disabled}
+          disabled={disabled || loading}
           role="combobox"
           variant="outline"
         >
-          {t('edit_office:edit_panel.features.add')}
+          {t(
+            loading
+              ? 'translation:buttons.loading'
+              : 'edit_office:edit_panel.features.add',
+          )}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

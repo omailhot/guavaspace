@@ -29,7 +29,8 @@
     "UserNotFoundException": "User not found.",
     "LimitExceededException": "Too many login attempts, please try again later.",
     "defaultTitle": "Error",
-    "invalid_address": "Invalid address."
+    "invalid_address": "Invalid address.",
+    "not_manager": "You must be a manager to do this action."
   },
   "buttons": {
     "loading": "Loading",
