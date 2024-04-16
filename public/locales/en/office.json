@@ -51,5 +51,10 @@
     "no_seats_available": "No seats available",
     "select_seats": "Select seats amount",
     "not_enough_seats": "Only {{count}} seats available"
+  },
+  "details": {
+    "office_pictures": "Office Pictures",
+    "see_more": "See more",
+    "breadcrumb": "Search"
   }
 }

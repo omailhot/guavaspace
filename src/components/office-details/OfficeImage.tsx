@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { cn } from '../../lib/utils';
 import { useOfficeContext } from '../../contexts/OfficeContext';
+import { cn } from '../../lib/utils';
 import { useDialogsStore } from '../../stores/useDialogsStore';
 import { OfficePictureType } from '../../types/Picture';
 import { Button } from '../ui/button';
@@ -17,6 +18,7 @@ export const OfficeImage = ({ pictureOrder, className }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const { office } = useOfficeContext();
   const toggleModal = useDialogsStore((s) => s.toggleModal);
+  const { t } = useTranslation(['office']);
 
   const picturePath = office.officePictures.find(
     (picture) => picture.pictureOrder === pictureOrder,
@@ -47,7 +49,7 @@ export const OfficeImage = ({ pictureOrder, className }: Props) => {
       {pictureOrder === 1 ? (
         <div className="absolute bottom-3 right-3">
           <Button className="mt-3" onClick={handleOpenModal} variant="outline">
-            Voir plus
+            {t('office:details.see_more')}
           </Button>
         </div>
       ) : null}

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   DialogBody,
   DialogContent,
@@ -12,6 +14,7 @@ import { resolveImagePath } from './OfficeDetails';
 
 export const OfficePicturesDialog = () => {
   const { office } = useOfficeContext();
+  const { t } = useTranslation(['office']);
 
   return (
     <GlobalDialog id="OFFICE_PICTURES">
@@ -20,7 +23,7 @@ export const OfficePicturesDialog = () => {
         onPointerDownOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
-          <DialogTitle>Office Pictures</DialogTitle>
+          <DialogTitle>{t('office:details.office_pictures')}</DialogTitle>
         </DialogHeader>
         <DialogBody className="container grid max-h-[calc(100dvh-3rem)] grid-cols-1 gap-3 overflow-auto md:grid-cols-2">
           {office.officePictures.map((image) => {

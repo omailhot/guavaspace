@@ -51,5 +51,10 @@
     "no_seats_available": "Aucune place disponible",
     "select_seats": "Sélectionner le nombre de places",
     "not_enough_seats": "Seulement {{count}} places disponibles"
+  },
+  "details": {
+    "office_pictures": "Photos de l'espace de travail",
+    "see_more": "Voir plus",
+    "breadcrumb": "Rechercher"
   }
 }

@@ -1,6 +1,7 @@
 import { createRoute, Link } from '@tanstack/react-router';
 import { addDays, parseISO } from 'date-fns';
 import { ChevronLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
   coerce,
   date,
@@ -19,6 +20,7 @@ import { fetchOfficeDetailsQuery } from './loader';
 
 const Component = () => {
   const office = OfficeDetailsRoute.useLoaderData();
+  const { t } = useTranslation(['office']);
 
   return (
     <div>
@@ -28,7 +30,7 @@ const Component = () => {
           to={IndexRoute.fullPath}
         >
           <ChevronLeft />
-          <span className="text-lg">Rechercher</span>
+          <span className="text-lg">{t('office:details.breadcrumb')}</span>
         </Link>
       </div>
       <div>
