@@ -36,5 +36,11 @@
     "loading": "Loading",
     "continue": "Continue",
     "close": "Close"
+  },
+  "branding": {
+    "title": "Find a workspace that suits you.",
+    "description1": "Rent or sublet office spaces",
+    "description2": "easily",
+    "description3": "on the online rental platform"
   }
 }

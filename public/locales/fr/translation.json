@@ -36,5 +36,11 @@
     "loading": "Chargement",
     "continue": "Continuer",
     "close": "Fermer"
+  },
+  "branding": {
+    "title": "Trouvez un espace de travail qui vous convient.",
+    "description1": "Louez ou sous-louez des espaces de bureaux",
+    "description2": "facilement",
+    "description3": "sur la plateforme de location en ligne"
   }
 }
