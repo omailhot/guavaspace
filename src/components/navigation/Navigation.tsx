@@ -1,12 +1,10 @@
-import { useNavigate } from '@tanstack/react-router';
 import { Globe, PlusSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Navbar } from '@/components/ui/navbar';
+import { useAuthContext } from '@/contexts/AuthContext';
 import i18n from '@/i18n';
 import { cn } from '@/lib/utils';
-import { useAuthContext } from '@/contexts/AuthContext';
-import { CreateOfficeRoute } from '@/routes/offices/create';
 
 import { Button } from '../ui/button';
 import { Logo } from './Logo';
@@ -19,7 +17,6 @@ type Props = {
 export const Navigation = ({ className }: Props) => {
   const { t } = useTranslation('navigation');
   const { user, startAuthFlow } = useAuthContext();
-  const navigate = useNavigate();
 
   return (
     <Navbar className={cn(className)}>
@@ -31,7 +28,7 @@ export const Navigation = ({ className }: Props) => {
           <div className="ml-auto flex gap-2">
             <Button
               className="gap-2"
-              onClick={() => navigate({ to: CreateOfficeRoute.fullPath })}
+              onClick={() => startAuthFlow({ isCreatedCompany: true })}
               variant="outline"
             >
               <PlusSquare size={18} />
