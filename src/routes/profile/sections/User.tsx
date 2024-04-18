@@ -17,6 +17,7 @@ import {
 } from 'valibot';
 
 import { SubmitButton } from '../../../components/form/SubmitButton';
+import { LoaderText } from '../../../components/loader/LoaderText';
 import { Button } from '../../../components/ui/button';
 import { Calendar } from '../../../components/ui/calendar';
 import {
@@ -260,6 +261,11 @@ export const ProfileUserRoute = createRoute({
   beforeLoad: ({ context }) => {
     context.auth.ensureConnected();
   },
+  pendingComponent: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <LoaderText />
+    </div>
+  ),
   loader: async () => {
     const userPool = new CognitoUserPool(POOL_DATA);
     const user = userPool.getCurrentUser();
