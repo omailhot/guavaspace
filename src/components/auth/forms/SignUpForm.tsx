@@ -42,7 +42,7 @@ export const SignUpForm = () => {
   const form = useForm<UserType>({
     resolver: valibotResolver(UserSchema),
     defaultValues: {
-      email: 'opaxxgaming@gmail.com',
+      email: 'deso1301@usherbrooke.ca',
       password: 'Lol123456@',
       family_name: 'Deschenes',
       given_name: 'Olivier',

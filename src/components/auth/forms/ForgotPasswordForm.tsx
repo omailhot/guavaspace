@@ -28,7 +28,7 @@ export const ForgotPasswordForm = () => {
   const form = useForm<ForgotPasswordType>({
     resolver: valibotResolver(ForgotPasswordSchema),
     defaultValues: {
-      username: 'opaxxgaming@gmail.com',
+      username: 'deso1301@usherbrooke.ca',
     },
   });
 

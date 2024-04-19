@@ -33,7 +33,7 @@ export const SignInForm = () => {
   const form = useForm<SignInType>({
     resolver: valibotResolver(SignInSchema),
     defaultValues: {
-      email: 'opaxxgaming@gmail.com',
+      email: 'deso1301@usherbrooke.ca',
       password: 'Lol123456@',
     },
     disabled: signInMutation.isPending,
